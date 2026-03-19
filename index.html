@@ -558,7 +558,7 @@ Intern</div>
           <h3 class="gate-title">Why Enterprise MCP Matters?</h3>
           <p class="gate-desc">Share your thoughts to unlock the resources. There's no single right answer — we're looking for key ideas.</p>
           <textarea id="gate-input" class="gate-textarea" placeholder="Type your answer here…" rows="4"></textarea>
-          <div class="gate-hint" id="gate-hint">0 / 10 keywords matched</div>
+          <div class="gate-hint" id="gate-hint">0 / 4 matched (need any 3 to unlock)</div>
           <button class="gate-btn" onclick="checkGate()">Unlock Resources</button>
           <p id="gate-error" class="gate-error"></p>
         </div>
@@ -631,7 +631,7 @@ function switchTab(id, btn) {
 
 // Text gate — keyword matching
 var _gateKeywords = [
-  'enterprise','orchestration','trust'
+  'enterprise','orchestration','trust','skills'
 ];
 var _gateThreshold = 3; // min keywords needed to unlock
 
@@ -650,7 +650,7 @@ function updateHint() {
   var matched = countMatches(text);
   var hint = document.getElementById('gate-hint');
   if (!hint) return;
-  hint.textContent = matched + ' / 3 keywords matched';
+  hint.textContent = matched + ' / 4 matched (need any 3 to unlock)';
   hint.style.color = matched >= _gateThreshold ? 'var(--teal-text)' : 'var(--muted2)';
 }
 
