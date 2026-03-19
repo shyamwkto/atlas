@@ -4,16 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ATLAS — IT Equipment Provisioning MCP Server</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --teal:        #22DBC8;
-    --teal-dark:   #1ab8a8;
+    --teal-1:      #0e9f97;
+    --teal-2:      #22DBC8;
+    --teal-3:      #3ab5b0;
+    --teal-text:   #0d7d76;
     --teal-soft:   #f0fdfb;
-    --teal-border: #c8f5f0;
+    --teal-border: #b3ede8;
     --ink:         #111827;
-    --ink2:        #374151;
+    --ink2:        #1F2937;
     --muted:       #6B7280;
     --muted2:      #9CA3AF;
     --rule:        #E5E7EB;
@@ -29,188 +31,231 @@
     --gmail:       #EA4335;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Inter', sans-serif; background: #f0f4f4; color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-  /* Header */
-  header { background: var(--white); border-bottom: 1px solid var(--rule); padding: 0 40px; position: sticky; top: 0; z-index: 100; }
-  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; max-width: 1100px; margin: 0 auto; }
-  .header-left { display: flex; align-items: center; gap: 10px; }
-  .header-icon { width: 30px; height: 30px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; }
-  .header-icon svg { width: 15px; height: 15px; }
-  .header-wordmark { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
-  .header-wordmark span { font-weight: 400; color: var(--muted); }
-  .header-divider { width: 1px; height: 18px; background: var(--rule); margin: 0 4px; }
-  .header-sub { font-size: 13px; color: var(--muted); }
-  .header-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--teal-dark); background: var(--teal-soft); border: 1px solid var(--teal-border); padding: 3px 10px; border-radius: 20px; }
+  /* ── Outer wrapper ── */
+  .outer { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
 
-  /* Hero */
-  .hero { border-bottom: 1px solid var(--rule); padding: 52px 40px 44px; background: var(--white); }
-  .hero-inner { max-width: 1100px; margin: 0 auto; }
-  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 16px; }
-  .hero-eyebrow::before { content: ""; width: 20px; height: 2px; background: var(--teal); border-radius: 2px; }
-  .hero h1 { font-size: clamp(24px, 3.5vw, 38px); font-weight: 700; color: var(--ink); line-height: 1.2; letter-spacing: -0.025em; margin-bottom: 12px; max-width: 680px; }
-  .hero-desc { font-size: 15px; color: var(--muted); max-width: 560px; line-height: 1.65; margin-bottom: 24px; }
-  .hero-pills { display: flex; flex-wrap: wrap; gap: 7px; }
-  .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--rule); background: var(--surface); color: var(--muted); }
-  .pill-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  /* ── Hero banner ── */
+  .hero-banner {
+    background: linear-gradient(135deg, #0e7a72 0%, #1aada0 40%, #22DBC8 80%, #4de8d8 100%);
+    border-radius: 16px;
+    padding: 52px 40px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .hero-banner::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 65%);
+    pointer-events: none;
+  }
+  .hero-banner::after {
+    content: "";
+    position: absolute;
+    bottom: -40px; left: 20%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.07), transparent 65%);
+    pointer-events: none;
+  }
+  .hero-banner h1 {
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 22px;
+    position: relative; z-index: 1;
+  }
+  .hero-pill {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: 0.01em;
+    position: relative; z-index: 1;
+  }
 
-  /* Tabs */
-  .tabs-wrapper { background: var(--white); border-bottom: 1px solid var(--rule); padding: 0 40px; position: sticky; top: 60px; z-index: 90; }
-  .tabs { display: flex; max-width: 1100px; margin: 0 auto; }
-  .tab-btn { font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; padding: 14px 16px; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; }
-  .tab-btn:hover { color: var(--ink2); }
-  .tab-btn.active { color: var(--ink); border-bottom-color: var(--teal); }
+  /* ── Tab nav ── */
+  .tab-nav {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 6px;
+    display: flex;
+    gap: 2px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .15s, color .15s;
+    text-align: center;
+    min-width: 100px;
+  }
+  .tab-btn:hover { background: var(--rule2); color: var(--ink2); }
+  .tab-btn.active {
+    background: var(--teal-3);
+    color: #ffffff;
+    font-weight: 700;
+  }
 
-  /* Page */
-  .page { max-width: 1100px; margin: 0 auto; padding: 44px 40px 0; }
-  .tab-panel { display: none; }
+  /* ── Content ── */
+  .tab-panel { display: none; background: var(--white); border-radius: 12px; padding: 36px 40px; border: 1px solid var(--rule); }
   .tab-panel.active { display: block; animation: fadeUp .16s ease; }
-  @keyframes fadeUp { from { opacity:0; transform:translateY(3px) } to { opacity:1; transform:translateY(0) } }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(4px) } to { opacity:1; transform:translateY(0) } }
 
-  /* Headings */
-  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 4px; }
-  h2 { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.015em; }
-  h3 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
-  .section-desc { font-size: 14px; color: var(--muted); margin-bottom: 24px; max-width: 560px; line-height: 1.6; }
+  /* ── Section headings ── */
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-text); margin-bottom: 4px; }
+  h2 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.02em; }
+  h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+  .section-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; max-width: 580px; line-height: 1.65; }
 
-  /* Steps */
+  /* ── Step list ── */
   .steps { display: flex; flex-direction: column; gap: 1px; border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); }
   .step-card { display: grid; grid-template-columns: 52px 1fr; padding: 20px 20px 20px 0; background: var(--white); border-bottom: 1px solid var(--rule); transition: background .12s; }
   .step-card:last-child { border-bottom: none; }
-  .step-card:hover { background: var(--surface); }
+  .step-card:hover { background: var(--teal-soft); }
   .step-num-col { display: flex; justify-content: center; padding-top: 1px; }
-  .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--teal); color: var(--white); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
-  .step-num.opt { background: var(--rule2); color: var(--muted2); }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: var(--teal-3); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
   .step-body > p { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
   .step-body > p:last-child { margin-bottom: 0; }
-  .ext-link { display: inline-flex; align-items: center; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal-dark); text-decoration: none; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--teal-border); background: var(--teal-soft); transition: background .12s, border-color .12s; }
-  .ext-link:hover { background: #d7faf6; border-color: var(--teal-dark); }
+  .ext-link { display: inline-flex; align-items: center; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal-text); text-decoration: none; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--teal-border); background: var(--teal-soft); transition: background .12s; }
+  .ext-link:hover { background: #d0f5f0; }
 
-  /* Instruction list */
-  .inst { list-style: none; margin: 10px 0; display: flex; flex-direction: column; gap: 4px; }
+  /* ── Instruction list ── */
+  .inst { list-style: none; margin: 10px 0; display: flex; flex-direction: column; gap: 5px; }
   .inst li { font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.6; }
-  .inst li::before { content: "—"; position: absolute; left: 0; color: var(--rule); font-size: 11px; top: 2px; }
+  .inst li::before { content: "—"; position: absolute; left: 0; color: var(--muted2); font-size: 11px; top: 2px; }
   .inst li strong { color: var(--ink2); font-weight: 600; }
-  code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--teal-soft); border: 1px solid var(--teal-border); padding: 1px 5px; border-radius: 3px; color: var(--teal-dark); }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--teal-soft); border: 1px solid var(--teal-border); padding: 1px 5px; border-radius: 3px; color: var(--teal-text); }
 
-  /* Copy block */
+  /* ── Copy block ── */
   .copy-wrap { position: relative; margin: 12px 0; }
-  .copy-block { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--teal); border-radius: 6px; padding: 14px 52px 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink2); line-height: 1.9; white-space: pre; }
-  .copy-btn { position: absolute; top: 10px; right: 10px; background: var(--white); border: 1px solid var(--rule); border-radius: 5px; padding: 4px 10px; font-size: 11px; font-weight: 500; color: var(--muted); cursor: pointer; font-family: 'Inter', sans-serif; transition: all .12s; }
-  .copy-btn:hover { background: var(--teal-soft); color: var(--teal-dark); border-color: var(--teal-border); }
-  .copy-btn.copied { color: var(--teal-dark); border-color: var(--teal-border); }
+  .copy-block { background: var(--rule2); border: 1px solid var(--rule); border-left: 3px solid var(--teal-2); border-radius: 6px; padding: 14px 52px 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink2); line-height: 1.9; white-space: pre; }
+  .copy-btn { position: absolute; top: 10px; right: 10px; background: var(--white); border: 1px solid var(--rule); border-radius: 5px; padding: 4px 10px; font-size: 11px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all .12s; }
+  .copy-btn:hover { background: var(--teal-soft); color: var(--teal-text); border-color: var(--teal-border); }
+  .copy-btn.copied { color: var(--teal-text); border-color: var(--teal-border); }
 
-  /* Callout */
+  /* ── Callout ── */
   .callout { background: #FFFBEB; border: 1px solid #FDE68A; border-left: 3px solid #F59E0B; border-radius: 6px; padding: 12px 14px; font-size: 13px; color: var(--ink2); line-height: 1.6; margin-top: 12px; }
   .callout strong { color: #92400E; }
 
-  /* Connection grid */
-  .conn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin-top: 14px; }
-  .conn-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; transition: border-color .12s; }
-  .conn-card:hover { border-color: var(--teal-border); }
+  /* ── Connection grid ── */
+  .conn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-top: 14px; }
+  .conn-card { background: var(--rule2); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; transition: border-color .12s; }
+  .conn-card:hover { border-color: var(--teal-border); background: var(--teal-soft); }
   .conn-app { font-size: 13px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 7px; margin-bottom: 3px; }
   .conn-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .conn-detail { font-size: 11px; color: var(--muted2); font-family: 'JetBrains Mono', monospace; padding-left: 14px; }
 
-  /* Divider */
-  .divider { height: 1px; background: var(--rule); margin: 36px 0; }
+  /* ── Divider ── */
+  .divider { height: 1px; background: var(--rule); margin: 32px 0; }
 
-  /* Tool Reference */
-  .server-card { border: 1px solid var(--rule); border-left: 4px solid var(--teal); border-radius: 10px; padding: 24px 28px; margin-bottom: 28px; background: var(--surface); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-  .server-name { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 500; color: var(--teal-dark); margin-bottom: 2px; letter-spacing: 0.04em; }
-  .server-full { font-size: 12px; color: var(--muted2); margin-bottom: 8px; font-style: italic; }
-  .server-desc { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 540px; }
+  /* ══════════ TOOL REFERENCE ══════════ */
+  .server-card { background: linear-gradient(135deg, #0a6b65 0%, #1aada0 60%, #22DBC8 100%); border-radius: 12px; padding: 24px 28px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .server-name { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 500; color: #fff; letter-spacing: 0.04em; margin-bottom: 2px; }
+  .server-full { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 8px; font-style: italic; }
+  .server-desc { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 520px; }
   .server-meta { text-align: right; flex-shrink: 0; }
-  .server-num { font-size: 40px; font-weight: 700; color: var(--rule); line-height: 1; display: block; }
-  .server-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted2); letter-spacing: 0.1em; }
+  .server-num { font-size: 44px; font-weight: 800; color: rgba(255,255,255,0.15); line-height: 1; display: block; letter-spacing: -0.04em; }
+  .server-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
 
   .tool-list { display: flex; flex-direction: column; gap: 12px; }
   .tool-card { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; background: var(--white); transition: border-color .15s, box-shadow .15s; }
-  .tool-card:hover { border-color: var(--teal-border); box-shadow: 0 2px 10px rgba(34,219,200,0.06); }
-  .tool-top { background: var(--surface); border-bottom: 1px solid var(--rule); padding: 18px 22px 14px; }
+  .tool-card:hover { border-color: var(--teal-border); box-shadow: 0 2px 12px rgba(26,173,160,0.08); }
+  .tool-top { background: var(--rule2); border-bottom: 1px solid var(--rule); padding: 18px 22px 14px; }
   .tool-name-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-  .tool-name { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: var(--teal-dark); background: var(--teal-soft); border: 1px solid var(--teal-border); padding: 3px 10px; border-radius: 5px; }
-  .app-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; border: 1px solid; letter-spacing: 0.02em; }
+  .tool-name { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: var(--teal-text); background: var(--teal-soft); border: 1px solid var(--teal-border); padding: 3px 10px; border-radius: 5px; }
+  .app-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; border: 1px solid; }
   .tool-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
   .tool-schemas { display: grid; grid-template-columns: 1fr 1fr; }
   .schema-col { padding: 16px 22px; }
   .schema-col + .schema-col { border-left: 1px solid var(--rule2); }
-  .schema-head { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .schema-head { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .schema-head::after { content: ""; flex: 1; height: 1px; background: var(--rule2); }
   .param { padding: 8px 0; border-bottom: 1px solid var(--rule2); }
   .param:last-child { border-bottom: none; }
   .param-top { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; flex-wrap: wrap; }
   .pname { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: var(--ink); }
-  .ptype { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal-dark); background: var(--teal-soft); border: 1px solid var(--teal-border); padding: 1px 5px; border-radius: 3px; }
+  .ptype { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal-text); background: var(--teal-soft); border: 1px solid var(--teal-border); padding: 1px 5px; border-radius: 3px; }
   .preq  { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); background: var(--red-soft); border: 1px solid var(--red-border); padding: 1px 5px; border-radius: 3px; }
   .popt  { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted2); background: var(--rule2); border: 1px solid var(--rule); padding: 1px 5px; border-radius: 3px; }
   .pdesc { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-  /* Footer */
-  footer { margin-top: 60px; border-top: 1px solid var(--rule); padding: 20px 40px; background: var(--white); }
-  .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .footer-left { display: flex; align-items: center; gap: 8px; }
-  .footer-icon { width: 20px; height: 20px; border-radius: 4px; background: var(--teal); display: flex; align-items: center; justify-content: center; }
+  /* ── Footer ── */
+  footer { text-align: center; margin-top: 28px; padding: 16px 0; }
+  .footer-inner { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .footer-brand { display: flex; align-items: center; gap: 7px; }
+  .footer-icon { width: 20px; height: 20px; border-radius: 4px; background: var(--teal-3); display: flex; align-items: center; justify-content: center; }
   .footer-icon svg { width: 10px; height: 10px; }
-  .footer-name { font-size: 12px; font-weight: 500; color: var(--muted); }
-  .footer-event { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: var(--teal-dark); letter-spacing: 0.06em; }
+  .footer-name { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .footer-sep { color: var(--muted2); font-size: 12px; }
+  .footer-event { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--teal-text); letter-spacing: 0.06em; }
   .footer-copy { font-size: 11px; color: var(--muted2); }
 
-  @media(max-width:680px) {
-    header, .tabs-wrapper, .hero, footer { padding-left: 20px; padding-right: 20px; }
-    .page { padding: 28px 20px 0; }
+  @media(max-width:640px) {
+    .outer { padding: 16px 12px 40px; }
+    .tab-panel { padding: 24px 20px; }
     .tool-schemas { grid-template-columns: 1fr; }
     .schema-col + .schema-col { border-left: none; border-top: 1px solid var(--rule2); }
     .server-card { flex-direction: column; align-items: flex-start; }
-    .footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .tab-btn { font-size: 12px; padding: 8px 10px; min-width: 80px; }
   }
 </style>
 </head>
 <body>
+<div class="outer">
 
-<header>
-  <div class="header-inner">
-    <div class="header-left">
-      <div class="header-icon">
-        <svg viewBox="0 0 15 15" fill="none"><rect x="1.5" y="1.5" width="5" height="5" rx="1.2" fill="white"/><rect x="8.5" y="1.5" width="5" height="5" rx="1.2" fill="white" opacity="0.65"/><rect x="1.5" y="8.5" width="5" height="5" rx="1.2" fill="white" opacity="0.65"/><rect x="8.5" y="8.5" width="5" height="5" rx="1.2" fill="white" opacity="0.3"/></svg>
-      </div>
-      <span class="header-wordmark">Workato <span>Enterprise MCP</span></span>
-      <div class="header-divider"></div>
-      <span class="header-sub">ATLAS</span>
-    </div>
-    <span class="header-badge">Buildathon: MCP Edition</span>
+  <!-- Hero -->
+  <div class="hero-banner">
+    <h1>ATLAS — IT Equipment Provisioning MCP Server</h1>
+    <p class="hero-subtitle">Automated Technology Logistics &amp; Allocation System</p>
+    <div class="hero-pill">Buildathon: MCP Edition &nbsp;·&nbsp; Hands-on Workshop &nbsp;·&nbsp; Workato Enterprise MCP</div>
   </div>
-</header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <span class="hero-eyebrow">Hands-on Workshop</span>
-    <h1>ATLAS — IT Equipment Provisioning<br>MCP Server</h1>
-    <p class="hero-desc">Automated Technology Logistics &amp; Allocation System. Handles IT equipment requests — checks eligibility, inventory, raises tickets and sends notifications.</p>
-    <div class="hero-pills">
-      <span class="pill"><span class="pill-dot" style="background:var(--sf)"></span>Salesforce</span>
-      <span class="pill"><span class="pill-dot" style="background:var(--jira)"></span>Jira JSM</span>
-      <span class="pill"><span class="pill-dot" style="background:var(--sheets)"></span>Google Sheets</span>
-      <span class="pill"><span class="pill-dot" style="background:var(--gmail)"></span>Gmail</span>
-    </div>
-  </div>
-</section>
-
-<div class="tabs-wrapper">
-  <div class="tabs">
+  <!-- Tab nav -->
+  <div class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('prereqs',this)">Prerequisites</button>
     <button class="tab-btn" onclick="switchTab('tools',this)">MCP Tool Reference</button>
   </div>
-</div>
-
-<div class="page">
 
   <!-- PREREQUISITES -->
   <div id="tab-prereqs" class="tab-panel active">
-    <div class="section-label" style="margin-top:8px">Accounts</div>
+
+    <div class="section-label">Accounts</div>
     <h2>Prerequisites</h2>
     <p class="section-desc">Sign up for each service before attending the workshop. All accounts are free with no credit card required.</p>
+
     <div class="steps">
       <div class="step-card">
         <div class="step-num-col"><div class="step-num">1</div></div>
@@ -339,7 +384,8 @@ Intern</div>
 
   <!-- TOOL REFERENCE -->
   <div id="tab-tools" class="tab-panel">
-    <div class="section-label" style="margin-top:8px">MCP Server</div>
+
+    <div class="section-label">MCP Server</div>
     <h2>Tool Reference</h2>
     <p class="section-desc">Five tools exposed by the ATLAS MCP server, each wired to a live business application.</p>
 
@@ -468,20 +514,23 @@ Intern</div>
     </div>
   </div>
 
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-left">
-      <div class="footer-icon">
-        <svg viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="3.5" height="3.5" rx="0.8" fill="white"/><rect x="5.5" y="1" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.65"/><rect x="1" y="5.5" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.65"/><rect x="5.5" y="5.5" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.3"/></svg>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-icon">
+          <svg viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="3.5" height="3.5" rx="0.8" fill="white"/><rect x="5.5" y="1" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.65"/><rect x="1" y="5.5" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.65"/><rect x="5.5" y="5.5" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.3"/></svg>
+        </div>
+        <span class="footer-name">Powered by Workato Enterprise MCP</span>
       </div>
-      <span class="footer-name">Powered by Workato Enterprise MCP</span>
+      <span class="footer-sep">·</span>
+      <span class="footer-event">Buildathon: MCP Edition</span>
+      <span class="footer-sep">·</span>
+      <span class="footer-copy">ATLAS · IT Equipment Provisioning MCP Server</span>
     </div>
-    <span class="footer-event">Buildathon: MCP Edition</span>
-    <span class="footer-copy">ATLAS · IT Equipment Provisioning MCP Server</span>
-  </div>
-</footer>
+  </footer>
+
+</div>
 
 <script>
 function switchTab(id, btn) {
