@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATLAS — IT Equipment Provisioning MCP Server</title>
+<title>ATLAS - IT Equipment Provisioning MCP Server</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -141,6 +141,40 @@
   .download-btn:hover { background: var(--teal-1); transform: translateY(-1px); }
   .download-btn:active { transform: translateY(0); }
 
+  /* Resource cards */
+  .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .resource-card { border: 1px solid var(--rule); border-radius: 12px; padding: 24px; background: var(--white); display: flex; flex-direction: column; gap: 16px; transition: border-color .15s, box-shadow .15s; }
+  .resource-card:hover { border-color: var(--teal-border); box-shadow: 0 4px 16px rgba(26,173,160,0.08); }
+  .resource-icon { width: 48px; height: 48px; border-radius: 10px; border: 1px solid; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .resource-icon svg { width: 22px; height: 22px; }
+  .resource-body { display: flex; flex-direction: column; gap: 6px; }
+  .resource-title { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+  .resource-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted2); }
+  .resource-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .resource-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--white); text-decoration: none; padding: 10px 18px; border-radius: 7px; margin-top: 4px; transition: opacity .15s, transform .1s; width: fit-content; }
+  .resource-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .resource-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .resource-btn:active { transform: translateY(0); }
+  @media(max-width:640px) { .resource-grid { grid-template-columns: 1fr; } }
+
+  /* Math gate */
+  #math-gate { display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+  .gate-inner { text-align: center; max-width: 560px; width: 100%; }
+  .gate-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--teal-soft); border: 1px solid var(--teal-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+  .gate-icon svg { width: 24px; height: 24px; color: var(--teal-text); }
+  .gate-title { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .gate-desc { font-size: 14px; color: var(--muted); margin: 10px 0 20px; line-height: 1.6; }
+  .gate-textarea { width: 100%; min-height: 110px; font-size: 14px; padding: 12px 14px; border: 1.5px solid var(--rule); border-radius: 8px; font-family: 'Inter', sans-serif; outline: none; resize: vertical; color: var(--ink); line-height: 1.6; transition: border-color .15s; }
+  .gate-textarea:focus { border-color: var(--teal-2); }
+  .gate-textarea::placeholder { color: var(--muted2); }
+  .gate-hint { font-size: 11px; color: var(--muted2); text-align: right; margin: 4px 0 12px; font-family: 'JetBrains Mono', monospace; }
+  .gate-btn { background: var(--teal-3); color: white; border: none; border-radius: 7px; padding: 11px 28px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s, transform .1s; font-family: 'Inter', sans-serif; width: 100%; }
+  .gate-btn:hover { background: var(--teal-1); transform: translateY(-1px); }
+  .gate-btn:active { transform: translateY(0); }
+  .gate-error { font-size: 13px; color: var(--red); margin-top: 10px; min-height: 20px; font-weight: 500; }
+  .gate-success { animation: gateOpen .4s ease forwards; }
+  @keyframes gateOpen { from { opacity:1; transform:scale(1) } to { opacity:0; transform:scale(0.96) } }
+
   /* ── Instruction list ── */
   .inst { list-style: none; margin: 10px 0; display: flex; flex-direction: column; gap: 5px; }
   .inst li { font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.6; }
@@ -229,9 +263,9 @@
   <!-- Hero -->
   <div class="hero-banner">
     <span class="hero-eyebrow">Hands-on Workshop · Workato Enterprise MCP</span>
-    <h1>ATLAS — IT Equipment<br>Provisioning MCP Server</h1>
+    <h1>ATLAS - IT Equipment<br>Provisioning MCP Server</h1>
     <p class="hero-desc">Automated Technology Logistics &amp; Allocation System.<br>Handles IT equipment requests — checks eligibility, inventory, raises tickets and sends notifications.</p>
-    <div class="hero-pill">Buildathon: MCP Edition &nbsp;·&nbsp; Salesforce &nbsp;·&nbsp; Jira JSM &nbsp;·&nbsp; Google Sheets &nbsp;·&nbsp; Gmail</div>
+    <div class="hero-pill">Workato Community Buildathon: MCP Edition &nbsp;·&nbsp; Salesforce &nbsp;·&nbsp; Jira JSM &nbsp;·&nbsp; Google Sheets &nbsp;·&nbsp; Gmail</div>
   </div>
 
   <div class="outer">
@@ -240,6 +274,7 @@
     <div class="tab-nav">
       <button class="tab-btn active" onclick="switchTab('prereqs',this)">Prerequisites</button>
       <button class="tab-btn" onclick="switchTab('tools',this)">MCP Tool Reference</button>
+      <button class="tab-btn" onclick="switchTab('resources',this)">Resources</button>
     </div>
 
     <!-- PREREQUISITES -->
@@ -344,10 +379,10 @@ Intern</div>
             <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:18px">Step B — Create two Contact records</h3>
             <ul class="inst">
               <li><strong>Contact 1 (you — the employee):</strong> your name · your email · Equipment Role = Software Engineer · Department = Engineering</li>
-              <li><strong>Contact 2 (your manager alias):</strong> your name + "(Manager)" · <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="720b1d07591f131c1315170032151f131b1e5c111d1f">[email&#160;protected]</a></code> · Equipment Role = Manager / Director</li>
+              <li><strong>Contact 2 (your manager alias):</strong> your name + "(Manager)" · <code>you&#43;manager&#64;gmail&#46;com</code> · Equipment Role = Manager / Director</li>
               <li>On Contact 1, set <strong>Reports To</strong> → Contact 2</li>
             </ul>
-            <div class="callout"><strong>Tip:</strong> Gmail aliases work seamlessly — <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7d04120856101c131c1a180f3d1a101c1411531e1210">[email&#160;protected]</a></code> delivers to your inbox but appears as a distinct address to Salesforce and the Gmail send action in your recipe.</div>
+            <div class="callout"><strong>Tip:</strong> Gmail aliases work seamlessly — <code>you&#43;manager&#64;gmail&#46;com</code> delivers to your inbox but appears as a distinct address to Salesforce and the Gmail send action in your recipe.</div>
           </div>
         </div>
 
@@ -511,6 +546,66 @@ Intern</div>
       </div>
     </div>
 
+    <!-- RESOURCES -->
+    <div id="tab-resources" class="tab-panel">
+
+      <!-- Text gate -->
+      <div id="math-gate">
+        <div class="gate-inner">
+          <div class="gate-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-1.5 2-2.5 3M12 17h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="gate-title">Why Enterprise MCP Matters?</h3>
+          <p class="gate-desc">Share your thoughts to unlock the resources. There's no single right answer — we're looking for key ideas.</p>
+          <textarea id="gate-input" class="gate-textarea" placeholder="Type your answer here…" rows="4"></textarea>
+          <div class="gate-hint" id="gate-hint">0 / 10 keywords matched</div>
+          <button class="gate-btn" onclick="checkGate()">Unlock Resources</button>
+          <p id="gate-error" class="gate-error"></p>
+        </div>
+      </div>
+
+      <!-- Actual content — hidden until gate is solved -->
+      <div id="resources-content" style="display:none">
+        <div class="section-label">Downloads</div>
+        <h2>Resources</h2>
+        <p class="section-desc">Everything you need to get started — download both files before the workshop begins.</p>
+
+        <div class="resource-grid">
+
+          <div class="resource-card">
+            <div class="resource-icon" style="background:rgba(24,128,56,0.08);border-color:rgba(24,128,56,0.15)">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#188038" stroke-width="1.5"/><path d="M8 8h8M8 12h8M8 16h5" stroke="#188038" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">IT Equipment Inventory</div>
+              <div class="resource-meta">Google Sheets workbook &nbsp;·&nbsp; .xlsx</div>
+              <div class="resource-desc">Pre-built inventory workbook with Stock, Reservations, Entitlements, and Employee Seed Data tabs. Upload to Google Drive and open as a native Google Sheet before the session.</div>
+              <a href="https://github.com/shyamwkto/atlas/raw/main/assets/IT_Equipment_Inventory.xlsx" download class="resource-btn" style="background:var(--sheets)">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M8 1v9M8 10l-3-3M8 10l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12v1.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Download IT_Equipment_Inventory.xlsx
+              </a>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-icon" style="background:rgba(14,159,151,0.08);border-color:rgba(14,159,151,0.15)">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 10h16M4 14h10" stroke="#0e9f97" stroke-width="1.5" stroke-linecap="round"/><path d="M14 17l3 3 5-5" stroke="#0e9f97" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="resource-body">
+              <div class="resource-title">ATLAS Project Manifest</div>
+              <div class="resource-meta">Workato project export &nbsp;·&nbsp; .zip</div>
+              <div class="resource-desc">Complete Workato project package containing all five MCP server tool recipes and the MCP server configuration for ATLAS. Import into your Workato workspace to use as a reference solution or starting point.</div>
+              <a href="https://github.com/shyamwkto/atlas/raw/main/assets/atlas-mcp.zip" download class="resource-btn" style="background:var(--teal-3)">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M8 1v9M8 10l-3-3M8 10l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12v1.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Download atlas-mcp.zip
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <footer>
@@ -521,17 +616,75 @@ Intern</div>
         </div>
         <span class="footer-name">Powered by Workato Enterprise MCP</span>
       </div>
-      <span class="footer-event">Buildathon: MCP Edition</span>
+      <span class="footer-event">Workato Community Buildathon: MCP Edition</span>
       <span class="footer-copy">ATLAS · IT Equipment Provisioning MCP Server</span>
     </div>
   </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
 }
+
+// Text gate — keyword matching
+var _gateKeywords = [
+  'enterprise','orchestration','trust'
+];
+var _gateThreshold = 3; // min keywords needed to unlock
+
+document.addEventListener('DOMContentLoaded', function() {
+  var ta = document.getElementById('gate-input');
+  if (ta) ta.addEventListener('input', updateHint);
+});
+
+function countMatches(text) {
+  var lower = text.toLowerCase();
+  return _gateKeywords.filter(function(kw) { return lower.includes(kw); }).length;
+}
+
+function updateHint() {
+  var text = document.getElementById('gate-input').value;
+  var matched = countMatches(text);
+  var hint = document.getElementById('gate-hint');
+  if (!hint) return;
+  hint.textContent = matched + ' / 3 keywords matched';
+  hint.style.color = matched >= _gateThreshold ? 'var(--teal-text)' : 'var(--muted2)';
+}
+
+function checkGate() {
+  var text = document.getElementById('gate-input').value.trim();
+  var err = document.getElementById('gate-error');
+  if (text.length < 20) {
+    err.textContent = 'Please write a bit more — share your thoughts!';
+    return;
+  }
+  var matched = countMatches(text);
+  if (matched >= _gateThreshold) {
+    window._gateUnlocked = true;
+    var gate = document.getElementById('math-gate');
+    gate.classList.add('gate-success');
+    setTimeout(function() {
+      gate.style.display = 'none';
+      var content = document.getElementById('resources-content');
+      content.style.display = 'block';
+      content.style.animation = 'fadeUp .3s ease';
+    }, 380);
+  } else {
+    err.textContent = 'Good start! Try mentioning a few more key concepts — think about agents, trust, and production.';
+  }
+}
 function copyBlock(id, btn) {
-  const el = document.getEle
+  const el = document.getElementById(id);
+  let text = '';
+  el.childNodes.forEach(n => { if (n.nodeType === 3) text += n.textContent; });
+  navigator.clipboard.writeText(text.trim()).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
