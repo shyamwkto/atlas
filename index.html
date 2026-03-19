@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ATLAS - IT Equipment Provisioning MCP Server</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -57,8 +57,8 @@
   }
   .hero-banner h1 {
     font-size: clamp(28px, 5vw, 56px);
-    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.01em;
     margin-bottom: 18px;
@@ -559,7 +559,7 @@ Intern</div>
           <h3 class="gate-title">Why Enterprise MCP Matters?</h3>
           <p class="gate-desc">Share your thoughts to unlock the resources. There's no single right answer — we're looking for key ideas.</p>
           <textarea id="gate-input" class="gate-textarea" placeholder="Type your answer here…" rows="4"></textarea>
-          <div class="gate-hint" id="gate-hint">0 / 4 matched (need any 3 to unlock)</div>
+          <div class="gate-hint" id="gate-hint">0 / 5 matched (need any 3 to unlock)</div>
           <button class="gate-btn" onclick="checkGate()">Unlock Resources</button>
           <p id="gate-error" class="gate-error"></p>
         </div>
@@ -632,7 +632,7 @@ function switchTab(id, btn) {
 
 // Text gate — keyword matching
 var _gateKeywords = [
-  'enterprise','orchestration','trust','skills'
+  'enterprise','orchestration','trust','skills','security'
 ];
 var _gateThreshold = 3; // min keywords needed to unlock
 
@@ -651,7 +651,7 @@ function updateHint() {
   var matched = countMatches(text);
   var hint = document.getElementById('gate-hint');
   if (!hint) return;
-  hint.textContent = matched + ' / 4 matched (need any 3 to unlock)';
+  hint.textContent = matched + ' / 5 matched (need any 3 to unlock)';
   hint.style.color = matched >= _gateThreshold ? 'var(--teal-text)' : 'var(--muted2)';
 }
 
