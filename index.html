@@ -33,64 +33,61 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', sans-serif; background: #f0f4f4; color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-  /* ── Outer wrapper ── */
-  .outer { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
-
-  /* ── Hero banner ── */
+  /* ── Hero — full bleed dark with gradient text ── */
   .hero-banner {
-    background: linear-gradient(135deg, #0e7a72 0%, #1aada0 40%, #22DBC8 80%, #4de8d8 100%);
-    border-radius: 16px;
-    padding: 52px 40px 44px;
+    background: #131313;
+    padding: 72px 48px 64px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    margin-bottom: 24px;
   }
   .hero-banner::before {
     content: "";
     position: absolute;
-    top: -60px; right: -60px;
-    width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 65%);
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(34,219,200,0.12), transparent 65%);
     pointer-events: none;
   }
-  .hero-banner::after {
-    content: "";
-    position: absolute;
-    bottom: -40px; left: 20%;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(255,255,255,0.07), transparent 65%);
-    pointer-events: none;
-  }
-  .hero-banner h1 {
-    font-size: clamp(24px, 4vw, 40px);
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    margin-bottom: 10px;
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(103,234,221,0.6); margin-bottom: 20px; display: block;
     position: relative; z-index: 1;
   }
-  .hero-subtitle {
-    font-size: 16px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 22px;
+  .hero-banner h1 {
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+    background: linear-gradient(135deg, #a8f0ea 0%, #67EADD 35%, #22DBC8 65%, #a0e8f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-desc {
+    font-size: 16px; font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    max-width: 560px; margin: 0 auto 28px;
+    line-height: 1.65;
     position: relative; z-index: 1;
   }
   .hero-pill {
     display: inline-block;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(4px);
+    background: rgba(103,234,221,0.08);
+    border: 1px solid rgba(103,234,221,0.2);
     border-radius: 8px;
-    padding: 10px 22px;
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.92);
+    padding: 10px 24px;
+    font-size: 13px; font-weight: 500;
+    color: rgba(103,234,221,0.75);
     letter-spacing: 0.01em;
     position: relative; z-index: 1;
   }
+
+  /* ── Outer wrapper ── */
+  .outer { max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px; }
 
   /* ── Tab nav ── */
   .tab-nav {
@@ -100,35 +97,22 @@
     padding: 6px;
     display: flex;
     gap: 2px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     overflow-x: auto;
     scrollbar-width: none;
   }
   .tab-nav::-webkit-scrollbar { display: none; }
   .tab-btn {
     flex: 1;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    background: none;
-    border: none;
-    border-radius: 7px;
-    padding: 10px 16px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background .15s, color .15s;
-    text-align: center;
-    min-width: 100px;
+    font-size: 13px; font-weight: 500; color: var(--muted);
+    background: none; border: none; border-radius: 7px;
+    padding: 10px 16px; cursor: pointer; white-space: nowrap;
+    transition: background .15s, color .15s; text-align: center; min-width: 120px;
   }
   .tab-btn:hover { background: var(--rule2); color: var(--ink2); }
-  .tab-btn.active {
-    background: var(--teal-3);
-    color: #ffffff;
-    font-weight: 700;
-  }
+  .tab-btn.active { background: var(--teal-3); color: #ffffff; font-weight: 700; }
 
-  /* ── Content ── */
+  /* ── Tab panel ── */
   .tab-panel { display: none; background: var(--white); border-radius: 12px; padding: 36px 40px; border: 1px solid var(--rule); }
   .tab-panel.active { display: block; animation: fadeUp .16s ease; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(4px) } to { opacity:1; transform:translateY(0) } }
@@ -139,7 +123,7 @@
   h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
   .section-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; max-width: 580px; line-height: 1.65; }
 
-  /* ── Step list ── */
+  /* ── Steps ── */
   .steps { display: flex; flex-direction: column; gap: 1px; border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); }
   .step-card { display: grid; grid-template-columns: 52px 1fr; padding: 20px 20px 20px 0; background: var(--white); border-bottom: 1px solid var(--rule); transition: background .12s; }
   .step-card:last-child { border-bottom: none; }
@@ -150,6 +134,12 @@
   .step-body > p:last-child { margin-bottom: 0; }
   .ext-link { display: inline-flex; align-items: center; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal-text); text-decoration: none; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--teal-border); background: var(--teal-soft); transition: background .12s; }
   .ext-link:hover { background: #d0f5f0; }
+
+  /* Download button */
+  .download-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--white); text-decoration: none; padding: 9px 18px; border-radius: 7px; background: var(--teal-3); border: none; transition: background .15s, transform .1s; margin-bottom: 4px; }
+  .download-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .download-btn:hover { background: var(--teal-1); transform: translateY(-1px); }
+  .download-btn:active { transform: translateY(0); }
 
   /* ── Instruction list ── */
   .inst { list-style: none; margin: 10px 0; display: flex; flex-direction: column; gap: 5px; }
@@ -181,13 +171,14 @@
   .divider { height: 1px; background: var(--rule); margin: 32px 0; }
 
   /* ══════════ TOOL REFERENCE ══════════ */
-  .server-card { background: linear-gradient(135deg, #0a6b65 0%, #1aada0 60%, #22DBC8 100%); border-radius: 12px; padding: 24px 28px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-  .server-name { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 500; color: #fff; letter-spacing: 0.04em; margin-bottom: 2px; }
-  .server-full { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 8px; font-style: italic; }
-  .server-desc { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 520px; }
+  .server-card { background: #131313; border-radius: 12px; padding: 28px 32px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; position: relative; overflow: hidden; }
+  .server-card::before { content: ""; position: absolute; top: -60px; right: -40px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(34,219,200,0.1), transparent 65%); pointer-events: none; }
+  .server-name { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; margin-bottom: 2px; letter-spacing: 0.05em; background: linear-gradient(135deg, #a8f0ea, #67EADD, #22DBC8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .server-full { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 8px; font-style: italic; }
+  .server-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 560px; }
   .server-meta { text-align: right; flex-shrink: 0; }
-  .server-num { font-size: 44px; font-weight: 800; color: rgba(255,255,255,0.15); line-height: 1; display: block; letter-spacing: -0.04em; }
-  .server-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+  .server-num { font-size: 52px; font-weight: 800; color: rgba(103,234,221,0.08); line-height: 1; display: block; letter-spacing: -0.04em; }
+  .server-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(103,234,221,0.25); letter-spacing: 0.1em; }
 
   .tool-list { display: flex; flex-direction: column; gap: 12px; }
   .tool-card { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; background: var(--white); transition: border-color .15s, box-shadow .15s; }
@@ -213,128 +204,134 @@
   .pdesc { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
   /* ── Footer ── */
-  footer { text-align: center; margin-top: 28px; padding: 16px 0; }
-  .footer-inner { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
-  .footer-brand { display: flex; align-items: center; gap: 7px; }
+  footer { background: #131313; padding: 20px 32px; margin-top: 0; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .footer-brand { display: flex; align-items: center; gap: 8px; }
   .footer-icon { width: 20px; height: 20px; border-radius: 4px; background: var(--teal-3); display: flex; align-items: center; justify-content: center; }
   .footer-icon svg { width: 10px; height: 10px; }
-  .footer-name { font-size: 12px; color: var(--muted); font-weight: 500; }
-  .footer-sep { color: var(--muted2); font-size: 12px; }
-  .footer-event { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--teal-text); letter-spacing: 0.06em; }
-  .footer-copy { font-size: 11px; color: var(--muted2); }
+  .footer-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.4); }
+  .footer-event { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: rgba(103,234,221,0.6); letter-spacing: 0.08em; }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.25); }
 
   @media(max-width:640px) {
-    .outer { padding: 16px 12px 40px; }
-    .tab-panel { padding: 24px 20px; }
+    .outer { padding: 16px 14px 40px; }
+    .tab-panel { padding: 24px 18px; }
     .tool-schemas { grid-template-columns: 1fr; }
     .schema-col + .schema-col { border-left: none; border-top: 1px solid var(--rule2); }
     .server-card { flex-direction: column; align-items: flex-start; }
-    .tab-btn { font-size: 12px; padding: 8px 10px; min-width: 80px; }
+    .hero-banner { padding: 48px 20px 40px; }
+    .tab-btn { font-size: 12px; padding: 8px 10px; min-width: 90px; }
   }
 </style>
 </head>
 <body>
-<div class="outer">
 
   <!-- Hero -->
   <div class="hero-banner">
-    <h1>ATLAS — IT Equipment Provisioning MCP Server</h1>
-    <p class="hero-subtitle">Automated Technology Logistics &amp; Allocation System</p>
-    <div class="hero-pill">Buildathon: MCP Edition &nbsp;·&nbsp; Hands-on Workshop &nbsp;·&nbsp; Workato Enterprise MCP</div>
+    <span class="hero-eyebrow">Hands-on Workshop · Workato Enterprise MCP</span>
+    <h1>ATLAS — IT Equipment<br>Provisioning MCP Server</h1>
+    <p class="hero-desc">Automated Technology Logistics &amp; Allocation System.<br>Handles IT equipment requests — checks eligibility, inventory, raises tickets and sends notifications.</p>
+    <div class="hero-pill">Buildathon: MCP Edition &nbsp;·&nbsp; Salesforce &nbsp;·&nbsp; Jira JSM &nbsp;·&nbsp; Google Sheets &nbsp;·&nbsp; Gmail</div>
   </div>
 
-  <!-- Tab nav -->
-  <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('prereqs',this)">Prerequisites</button>
-    <button class="tab-btn" onclick="switchTab('tools',this)">MCP Tool Reference</button>
-  </div>
+  <div class="outer">
 
-  <!-- PREREQUISITES -->
-  <div id="tab-prereqs" class="tab-panel active">
+    <!-- Tab nav -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('prereqs',this)">Prerequisites</button>
+      <button class="tab-btn" onclick="switchTab('tools',this)">MCP Tool Reference</button>
+    </div>
 
-    <div class="section-label">Accounts</div>
-    <h2>Prerequisites</h2>
-    <p class="section-desc">Sign up for each service before attending the workshop. All accounts are free with no credit card required.</p>
+    <!-- PREREQUISITES -->
+    <div id="tab-prereqs" class="tab-panel active">
 
-    <div class="steps">
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">1</div></div>
-        <div class="step-body">
-          <h3>Workato Developer Sandbox</h3>
-          <p>Your automation platform for building the ATLAS MCP server and all recipe-based tools. Sign up for a free developer sandbox — it never expires.</p>
-          <a href="https://www.workato.com/developers/sandbox" target="_blank" class="ext-link">workato.com/developers/sandbox ↗</a>
+      <div class="section-label">Accounts</div>
+      <h2>Prerequisites</h2>
+      <p class="section-desc">Sign up for each service before attending the workshop. All accounts are free with no credit card required.</p>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">1</div></div>
+          <div class="step-body">
+            <h3>Workato Developer Sandbox</h3>
+            <p>Your automation platform for building the ATLAS MCP server and all recipe-based tools. Sign up for a free developer sandbox — it never expires.</p>
+            <a href="https://www.workato.com/developers/sandbox" target="_blank" class="ext-link">workato.com/developers/sandbox ↗</a>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">2</div></div>
-        <div class="step-body">
-          <h3>Salesforce Developer Edition</h3>
-          <p>Used to store employee Contact records and asset entitlements. Sign up for a free Developer Edition account.</p>
-          <a href="https://www.salesforce.com/products/free-trial/developer/" target="_blank" class="ext-link">salesforce.com — Developer Edition ↗</a>
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">2</div></div>
+          <div class="step-body">
+            <h3>Salesforce Developer Edition</h3>
+            <p>Used to store employee Contact records and asset entitlements. Sign up for a free Developer Edition account.</p>
+            <a href="https://www.salesforce.com/products/free-trial/developer/" target="_blank" class="ext-link">salesforce.com — Developer Edition ↗</a>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">3</div></div>
-        <div class="step-body">
-          <h3>Jira Service Management</h3>
-          <p>Used as the IT helpdesk for provisioning tickets. Sign up for a free Atlassian Cloud account and enable Jira Service Management.</p>
-          <a href="https://www.atlassian.com/try/cloud/signup" target="_blank" class="ext-link">atlassian.com/try/cloud/signup ↗</a>
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">3</div></div>
+          <div class="step-body">
+            <h3>Jira Service Management</h3>
+            <p>Used as the IT helpdesk for provisioning tickets. Sign up for a free Atlassian Cloud account and enable Jira Service Management.</p>
+            <a href="https://www.atlassian.com/try/cloud/signup" target="_blank" class="ext-link">atlassian.com/try/cloud/signup ↗</a>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">4</div></div>
-        <div class="step-body">
-          <h3>Google Account</h3>
-          <p>Used for Google Sheets (equipment inventory) and Gmail (manager approval emails). An existing Google account works fine.</p>
-          <a href="https://accounts.google.com" target="_blank" class="ext-link">accounts.google.com ↗</a>
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">4</div></div>
+          <div class="step-body">
+            <h3>Google Account</h3>
+            <p>Used for Google Sheets (equipment inventory) and Gmail (manager approval emails). An existing Google account works fine.</p>
+            <a href="https://accounts.google.com" target="_blank" class="ext-link">accounts.google.com ↗</a>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">5</div></div>
-        <div class="step-body">
-          <h3>MCP Client</h3>
-          <p>To interact with ATLAS you need an MCP-compatible client that supports remote MCP server connections. You can use Claude, Workato Genie, or MCP Jam.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-            <a href="https://claude.ai" target="_blank" class="ext-link">claude.ai ↗</a>
-            <a href="https://app.mcpjam.com" target="_blank" class="ext-link">app.mcpjam.com ↗</a>
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">5</div></div>
+          <div class="step-body">
+            <h3>MCP Client</h3>
+            <p>To interact with ATLAS you need an MCP-compatible client that supports remote MCP server connections. You can use Claude, Workato Genie, or MCP Jam.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+              <a href="https://claude.ai" target="_blank" class="ext-link">claude.ai ↗</a>
+              <a href="https://app.mcpjam.com" target="_blank" class="ext-link">app.mcpjam.com ↗</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="divider"></div>
+      <div class="divider"></div>
 
-    <div class="section-label">System configuration</div>
-    <h2>Lab Setup</h2>
-    <p class="section-desc">Complete all four setup steps before the session starts. Estimated time: 20–30 minutes.</p>
+      <div class="section-label">System configuration</div>
+      <h2>Lab Setup</h2>
+      <p class="section-desc">Complete all four setup steps before the session starts. Estimated time: 20–30 minutes.</p>
 
-    <div class="steps">
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">1</div></div>
-        <div class="step-body">
-          <h3>Google Sheets — Equipment Inventory</h3>
-          <p>Download the pre-built inventory workbook and save it as a native Google Sheet in your Drive.</p>
-          <ul class="inst">
-            <li>Go to <strong>drive.google.com → New → File upload</strong> and select the downloaded file</li>
-            <li>Right-click the uploaded file → <strong>Open with → Google Sheets</strong></li>
-            <li>Confirm all tabs are present: <strong>Stock</strong>, <strong>Reservations</strong>, <strong>Entitlements</strong>, <strong>Employee Seed Data</strong></li>
-          </ul>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">1</div></div>
+          <div class="step-body">
+            <h3>Google Sheets — Equipment Inventory</h3>
+            <p>Download the pre-built inventory workbook and save it as a native Google Sheet in your Drive.</p>
+            <a href="https://github.com/shyamwkto/atlas/raw/main/assets/IT_Equipment_Inventory.xlsx" download class="download-btn">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1v9M8 10l-3-3M8 10l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12v1.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Download IT_Equipment_Inventory.xlsx
+            </a>
+            <ul class="inst" style="margin-top:12px">
+              <li>Go to <strong>drive.google.com → New → File upload</strong> and select the downloaded file</li>
+              <li>Right-click the uploaded file → <strong>Open with → Google Sheets</strong></li>
+              <li>Confirm all tabs are present: <strong>Stock</strong>, <strong>Reservations</strong>, <strong>Entitlements</strong>, <strong>Employee Seed Data</strong></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">2</div></div>
-        <div class="step-body">
-          <h3>Salesforce — Employee Contacts</h3>
-          <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:14px">Step A — Create the Equipment Role custom field</h3>
-          <ul class="inst">
-            <li>Gear icon <strong>→ Setup → Object Manager → Contact → Fields &amp; Relationships → New</strong></li>
-            <li>Select <strong>Picklist</strong> → Next</li>
-            <li>Field Label: <strong>Equipment Role</strong> — API name auto-fills as <code>Equipment_Role__c</code></li>
-            <li>Paste the values below, then click <strong>Next → Next → Save</strong></li>
-          </ul>
-          <div class="copy-wrap">
-            <div class="copy-block" id="roles-block">Software Engineer
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">2</div></div>
+          <div class="step-body">
+            <h3>Salesforce — Employee Contacts</h3>
+            <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:14px">Step A — Create the Equipment Role custom field</h3>
+            <ul class="inst">
+              <li>Gear icon <strong>→ Setup → Object Manager → Contact → Fields &amp; Relationships → New</strong></li>
+              <li>Select <strong>Picklist</strong> → Next</li>
+              <li>Field Label: <strong>Equipment Role</strong> — API name auto-fills as <code>Equipment_Role__c</code></li>
+              <li>Paste the values below, then click <strong>Next → Next → Save</strong></li>
+            </ul>
+            <div class="copy-wrap">
+              <div class="copy-block" id="roles-block">Software Engineer
 Senior Engineer
 Product Manager
 Designer
@@ -342,179 +339,180 @@ Sales
 IT Admin
 Manager / Director
 Intern</div>
-            <button class="copy-btn" onclick="copyBlock('roles-block',this)">Copy</button>
+              <button class="copy-btn" onclick="copyBlock('roles-block',this)">Copy</button>
+            </div>
+            <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:18px">Step B — Create two Contact records</h3>
+            <ul class="inst">
+              <li><strong>Contact 1 (you — the employee):</strong> your name · your email · Equipment Role = Software Engineer · Department = Engineering</li>
+              <li><strong>Contact 2 (your manager alias):</strong> your name + "(Manager)" · <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="720b1d07591f131c1315170032151f131b1e5c111d1f">[email&#160;protected]</a></code> · Equipment Role = Manager / Director</li>
+              <li>On Contact 1, set <strong>Reports To</strong> → Contact 2</li>
+            </ul>
+            <div class="callout"><strong>Tip:</strong> Gmail aliases work seamlessly — <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7d04120856101c131c1a180f3d1a101c1411531e1210">[email&#160;protected]</a></code> delivers to your inbox but appears as a distinct address to Salesforce and the Gmail send action in your recipe.</div>
           </div>
-          <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:18px">Step B — Create two Contact records</h3>
-          <ul class="inst">
-            <li><strong>Contact 1 (you — the employee):</strong> your name · your email · Equipment Role = Software Engineer · Department = Engineering</li>
-            <li><strong>Contact 2 (your manager alias):</strong> your name + "(Manager)" · <code>you+manager@gmail.com</code> · Equipment Role = Manager / Director</li>
-            <li>On Contact 1, set <strong>Reports To</strong> → Contact 2</li>
-          </ul>
-          <div class="callout"><strong>Tip:</strong> Gmail aliases work seamlessly — <code>you+manager@gmail.com</code> delivers to your inbox but appears as a distinct address to Salesforce and the Gmail send action in your recipe.</div>
         </div>
-      </div>
 
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">3</div></div>
-        <div class="step-body">
-          <h3>Jira Service Management — IT Helpdesk Space</h3>
-          <ul class="inst">
-            <li>Open your Atlassian site → select <strong>Jira Service Management</strong></li>
-            <li>Click <strong>Create project</strong> → choose <strong>IT Service Management</strong> template → Next</li>
-            <li>Space name: <strong>IT Helpdesk</strong> · Key: <strong>ITHD</strong> → Create</li>
-          </ul>
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">3</div></div>
+          <div class="step-body">
+            <h3>Jira Service Management — IT Helpdesk Space</h3>
+            <ul class="inst">
+              <li>Open your Atlassian site → select <strong>Jira Service Management</strong></li>
+              <li>Click <strong>Create project</strong> → choose <strong>IT Service Management</strong> template → Next</li>
+              <li>Space name: <strong>IT Helpdesk</strong> · Key: <strong>ITHD</strong> → Create</li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="step-card">
-        <div class="step-num-col"><div class="step-num">4</div></div>
-        <div class="step-body">
-          <h3>Workato — Create Connections</h3>
-          <p>In your Workato workspace go to <strong>Connections → New connection</strong> and authenticate each app. Verify all four show green Connected status before starting.</p>
-          <div class="conn-grid">
-            <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--sf)"></span>Salesforce</div><div class="conn-detail">OAuth 2.0 · Developer Edition</div></div>
-            <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--jira)"></span>Jira</div><div class="conn-detail">OAuth 2.0 · Atlassian Cloud</div></div>
-            <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--sheets)"></span>Google Sheets</div><div class="conn-detail">OAuth 2.0 · Drive owner account</div></div>
-            <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--gmail)"></span>Gmail</div><div class="conn-detail">OAuth 2.0 · Sending account</div></div>
+        <div class="step-card">
+          <div class="step-num-col"><div class="step-num">4</div></div>
+          <div class="step-body">
+            <h3>Workato — Create Connections</h3>
+            <p>In your Workato workspace go to <strong>Connections → New connection</strong> and authenticate each app. Verify all four show green Connected status before starting.</p>
+            <div class="conn-grid">
+              <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--sf)"></span>Salesforce</div><div class="conn-detail">OAuth 2.0 · Developer Edition</div></div>
+              <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--jira)"></span>Jira</div><div class="conn-detail">OAuth 2.0 · Atlassian Cloud</div></div>
+              <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--sheets)"></span>Google Sheets</div><div class="conn-detail">OAuth 2.0 · Drive owner account</div></div>
+              <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--gmail)"></span>Gmail</div><div class="conn-detail">OAuth 2.0 · Sending account</div></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- TOOL REFERENCE -->
+    <div id="tab-tools" class="tab-panel">
+
+      <div class="section-label">MCP Server</div>
+      <h2>Tool Reference</h2>
+      <p class="section-desc">Five tools exposed by the ATLAS MCP server, each wired to a live business application.</p>
+
+      <div class="server-card">
+        <div>
+          <div class="server-name">ATLAS</div>
+          <div class="server-full">Automated Technology Logistics &amp; Allocation System</div>
+          <div class="server-desc">Handles IT equipment requests — checks eligibility, inventory, raises tickets and sends notifications.</div>
+        </div>
+        <div class="server-meta"><span class="server-num">5</span><span class="server-lbl">tools</span></div>
+      </div>
+
+      <div class="tool-list">
+
+        <div class="tool-card">
+          <div class="tool-top">
+            <div class="tool-name-row"><span class="tool-name">check_inventory</span><span class="app-tag" style="color:var(--sheets);border-color:rgba(24,128,56,0.2);background:rgba(24,128,56,0.05)">Google Sheets</span></div>
+            <div class="tool-desc">Returns available IT equipment from the live inventory sheet. Filters out out-of-stock items automatically. Call this before any provisioning request to confirm items are available. Optionally filter by equipment category to narrow results.</div>
+          </div>
+          <div class="tool-schemas">
+            <div class="schema-col">
+              <div class="schema-head">Inputs</div>
+              <div class="param"><div class="param-top"><span class="pname">category</span><span class="ptype">string</span><span class="popt">optional</span></div><div class="pdesc">Filter by: Laptop, Monitor, Keyboard, Mouse, Audio, Accessory. Leave empty to return all available items.</div></div>
+            </div>
+            <div class="schema-col">
+              <div class="schema-head">Output</div>
+              <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">array</span></div><div class="pdesc">List of available inventory items. Only items with qty > 0 included.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].item_id</span><span class="ptype">string</span></div><div class="pdesc">Unique identifier, e.g. ITEM-001. Pass this to reserve_item.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].item_name</span><span class="ptype">string</span></div><div class="pdesc">Display name, e.g. MacBook Pro 14" M3.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].category</span><span class="ptype">string</span></div><div class="pdesc">Equipment category.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].available_qty</span><span class="ptype">integer</span></div><div class="pdesc">Current available stock quantity.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-top">
+            <div class="tool-name-row"><span class="tool-name">get_employee_profile</span><span class="app-tag" style="color:var(--sf);border-color:rgba(1,118,211,0.2);background:rgba(1,118,211,0.05)">Salesforce</span></div>
+            <div class="tool-desc">Looks up an employee in Salesforce and returns their profile including role, department, manager contact, and full equipment entitlement tier. Always call this before reserving any item — the entitlement object determines whether the requested equipment is eligible for this employee's role.</div>
+          </div>
+          <div class="tool-schemas">
+            <div class="schema-col">
+              <div class="schema-head">Inputs</div>
+              <div class="param"><div class="param-top"><span class="pname">employee_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Corporate email of the employee. Used to look up their Contact record in Salesforce.</div></div>
+            </div>
+            <div class="schema-col">
+              <div class="schema-head">Output</div>
+              <div class="param"><div class="param-top"><span class="pname">employee_id</span><span class="ptype">string</span></div><div class="pdesc">Salesforce Contact ID. Pass to reserve_item.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">full_name</span><span class="ptype">string</span></div><div class="pdesc">Employee's full name. Pass to reserve_item and send_approval_request.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">role</span><span class="ptype">string</span></div><div class="pdesc">Equipment Role value, e.g. Software Engineer.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">department</span><span class="ptype">string</span></div><div class="pdesc">Employee's department.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">manager_email</span><span class="ptype">string</span></div><div class="pdesc">Manager's email. Pass to send_approval_request.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">entitlement</span><span class="ptype">object</span></div><div class="pdesc">Full entitlement row — laptop tier, monitor limit, keyboard, mouse, audio, accessories eligibility.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-top">
+            <div class="tool-name-row"><span class="tool-name">reserve_item</span><span class="app-tag" style="color:var(--sheets);border-color:rgba(24,128,56,0.2);background:rgba(24,128,56,0.05)">Google Sheets</span></div>
+            <div class="tool-desc">Reserves one or more items from inventory on behalf of an employee. Decrements Available Qty and increments Reserved Qty in the Stock tab, then appends one row per item to the Reservations tab. Only call after confirming eligibility via get_employee_profile and availability via check_inventory.</div>
+          </div>
+          <div class="tool-schemas">
+            <div class="schema-col">
+              <div class="schema-head">Inputs</div>
+              <div class="param"><div class="param-top"><span class="pname">employee_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Email of the employee requesting the items.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">employee_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Salesforce Contact ID from get_employee_profile. Logged for traceability.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">employee_full_name</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Full name from get_employee_profile. Written to Reservations tab.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">array</span><span class="preq">required</span></div><div class="pdesc">List of items to reserve. Each entry requires item_id and quantity.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].item_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Item identifier from check_inventory, e.g. ITEM-001.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].quantity</span><span class="ptype">integer</span><span class="preq">required</span></div><div class="pdesc">Number of units to reserve. Minimum 1.</div></div>
+            </div>
+            <div class="schema-col">
+              <div class="schema-head">Output</div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span></div><div class="pdesc">Unique reservation ID, e.g. RES-20250320143022. Pass to create_provisioning_ticket and send_approval_request.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Always returns "Pending" on successful reservation.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-top">
+            <div class="tool-name-row"><span class="tool-name">create_provisioning_ticket</span><span class="app-tag" style="color:var(--jira);border-color:rgba(0,82,204,0.2);background:rgba(0,82,204,0.05)">Jira JSM</span></div>
+            <div class="tool-desc">Creates an Equipment Request issue in the ITHD Jira Service Management space. Captures the employee, items requested as a human-readable string, reservation ID, and priority. Call this after reserve_item succeeds. Returns the ticket key and URL for use in the approval email.</div>
+          </div>
+          <div class="tool-schemas">
+            <div class="schema-col">
+              <div class="schema-head">Inputs</div>
+              <div class="param"><div class="param-top"><span class="pname">employee_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Included in the ticket description for IT admin reference.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From reserve_item — included for cross-system traceability.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Human-readable list, e.g. "MacBook Pro 14" M3 ×1, Magic Keyboard ×1".</div></div>
+              <div class="param"><div class="param-top"><span class="pname">priority</span><span class="ptype">string</span><span class="popt">optional</span></div><div class="pdesc">Low, Medium, or High. Defaults to Medium.</div></div>
+            </div>
+            <div class="schema-col">
+              <div class="schema-head">Output</div>
+              <div class="param"><div class="param-top"><span class="pname">ticket_key</span><span class="ptype">string</span></div><div class="pdesc">Jira issue key, e.g. ITHD-42.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span></div><div class="pdesc">Direct URL to the Jira issue. Pass to send_approval_request.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span></div><div class="pdesc">Echo of the input — returned so the agent doesn't need to track state between calls.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Initial ticket status, always "Open" on creation.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-top">
+            <div class="tool-name-row"><span class="tool-name">send_approval_request</span><span class="app-tag" style="color:var(--gmail);border-color:rgba(234,67,53,0.2);background:rgba(234,67,53,0.05)">Gmail</span></div>
+            <div class="tool-desc">Sends a formatted approval email to the employee's manager with full provisioning details — employee name, items requested, Jira ticket link, and reservation ID. Call this after create_provisioning_ticket succeeds. This is the human-in-the-loop checkpoint in the provisioning flow.</div>
+          </div>
+          <div class="tool-schemas">
+            <div class="schema-col">
+              <div class="schema-head">Inputs</div>
+              <div class="param"><div class="param-top"><span class="pname">manager_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From get_employee_profile output field manager_email.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">employee_name</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Full name of the requesting employee — used in the email subject and body.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Human-readable items list — same string passed to create_provisioning_ticket.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From create_provisioning_ticket — so the manager can review and approve.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From create_provisioning_ticket output — included for cross-system reference.</div></div>
+            </div>
+            <div class="schema-col">
+              <div class="schema-head">Output</div>
+              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Returns "Approval email sent" on success.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">sent_to</span><span class="ptype">string</span></div><div class="pdesc">The manager email address the approval request was delivered to.</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
-  <!-- TOOL REFERENCE -->
-  <div id="tab-tools" class="tab-panel">
-
-    <div class="section-label">MCP Server</div>
-    <h2>Tool Reference</h2>
-    <p class="section-desc">Five tools exposed by the ATLAS MCP server, each wired to a live business application.</p>
-
-    <div class="server-card">
-      <div>
-        <div class="server-name">ATLAS</div>
-        <div class="server-full">Automated Technology Logistics &amp; Allocation System</div>
-        <div class="server-desc">Handles IT equipment requests — checks eligibility, inventory, raises tickets and sends notifications.</div>
-      </div>
-      <div class="server-meta"><span class="server-num">5</span><span class="server-lbl">tools</span></div>
-    </div>
-
-    <div class="tool-list">
-
-      <div class="tool-card">
-        <div class="tool-top">
-          <div class="tool-name-row"><span class="tool-name">check_inventory</span><span class="app-tag" style="color:var(--sheets);border-color:rgba(24,128,56,0.2);background:rgba(24,128,56,0.05)">Google Sheets</span></div>
-          <div class="tool-desc">Returns available IT equipment from the live inventory sheet. Filters out out-of-stock items automatically. Call this before any provisioning request to confirm items are available. Optionally filter by equipment category to narrow results.</div>
-        </div>
-        <div class="tool-schemas">
-          <div class="schema-col">
-            <div class="schema-head">Inputs</div>
-            <div class="param"><div class="param-top"><span class="pname">category</span><span class="ptype">string</span><span class="popt">optional</span></div><div class="pdesc">Filter by: Laptop, Monitor, Keyboard, Mouse, Audio, Accessory. Leave empty to return all available items.</div></div>
-          </div>
-          <div class="schema-col">
-            <div class="schema-head">Output</div>
-            <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">array</span></div><div class="pdesc">List of available inventory items. Only items with qty > 0 included.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items[].item_id</span><span class="ptype">string</span></div><div class="pdesc">Unique identifier, e.g. ITEM-001. Pass this to reserve_item.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items[].item_name</span><span class="ptype">string</span></div><div class="pdesc">Display name, e.g. MacBook Pro 14" M3.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items[].category</span><span class="ptype">string</span></div><div class="pdesc">Equipment category.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items[].available_qty</span><span class="ptype">integer</span></div><div class="pdesc">Current available stock quantity.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-top">
-          <div class="tool-name-row"><span class="tool-name">get_employee_profile</span><span class="app-tag" style="color:var(--sf);border-color:rgba(1,118,211,0.2);background:rgba(1,118,211,0.05)">Salesforce</span></div>
-          <div class="tool-desc">Looks up an employee in Salesforce and returns their profile including role, department, manager contact, and full equipment entitlement tier. Always call this before reserving any item — the entitlement object determines whether the requested equipment is eligible for this employee's role.</div>
-        </div>
-        <div class="tool-schemas">
-          <div class="schema-col">
-            <div class="schema-head">Inputs</div>
-            <div class="param"><div class="param-top"><span class="pname">employee_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Corporate email of the employee. Used to look up their Contact record in Salesforce.</div></div>
-          </div>
-          <div class="schema-col">
-            <div class="schema-head">Output</div>
-            <div class="param"><div class="param-top"><span class="pname">employee_id</span><span class="ptype">string</span></div><div class="pdesc">Salesforce Contact ID. Pass to reserve_item.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">full_name</span><span class="ptype">string</span></div><div class="pdesc">Employee's full name. Pass to reserve_item and send_approval_request.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">role</span><span class="ptype">string</span></div><div class="pdesc">Equipment Role value, e.g. Software Engineer.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">department</span><span class="ptype">string</span></div><div class="pdesc">Employee's department.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">manager_email</span><span class="ptype">string</span></div><div class="pdesc">Manager's email. Pass to send_approval_request.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">entitlement</span><span class="ptype">object</span></div><div class="pdesc">Full entitlement row — laptop tier, monitor limit, keyboard, mouse, audio, accessories eligibility.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-top">
-          <div class="tool-name-row"><span class="tool-name">reserve_item</span><span class="app-tag" style="color:var(--sheets);border-color:rgba(24,128,56,0.2);background:rgba(24,128,56,0.05)">Google Sheets</span></div>
-          <div class="tool-desc">Reserves one or more items from inventory on behalf of an employee. Decrements Available Qty and increments Reserved Qty in the Stock tab, then appends one row per item to the Reservations tab. Only call after confirming eligibility via get_employee_profile and availability via check_inventory.</div>
-        </div>
-        <div class="tool-schemas">
-          <div class="schema-col">
-            <div class="schema-head">Inputs</div>
-            <div class="param"><div class="param-top"><span class="pname">employee_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Email of the employee requesting the items.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">employee_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Salesforce Contact ID from get_employee_profile. Logged for traceability.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">employee_full_name</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Full name from get_employee_profile. Written to Reservations tab.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">array</span><span class="preq">required</span></div><div class="pdesc">List of items to reserve. Each entry requires item_id and quantity.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items[].item_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Item identifier from check_inventory, e.g. ITEM-001.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items[].quantity</span><span class="ptype">integer</span><span class="preq">required</span></div><div class="pdesc">Number of units to reserve. Minimum 1.</div></div>
-          </div>
-          <div class="schema-col">
-            <div class="schema-head">Output</div>
-            <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span></div><div class="pdesc">Unique reservation ID, e.g. RES-20250320143022. Pass to create_provisioning_ticket and send_approval_request.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Always returns "Pending" on successful reservation.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-top">
-          <div class="tool-name-row"><span class="tool-name">create_provisioning_ticket</span><span class="app-tag" style="color:var(--jira);border-color:rgba(0,82,204,0.2);background:rgba(0,82,204,0.05)">Jira JSM</span></div>
-          <div class="tool-desc">Creates an Equipment Request issue in the ITHD Jira Service Management space. Captures the employee, items requested as a human-readable string, reservation ID, and priority. Call this after reserve_item succeeds. Returns the ticket key and URL for use in the approval email.</div>
-        </div>
-        <div class="tool-schemas">
-          <div class="schema-col">
-            <div class="schema-head">Inputs</div>
-            <div class="param"><div class="param-top"><span class="pname">employee_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Included in the ticket description for IT admin reference.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From reserve_item — included for cross-system traceability.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Human-readable list, e.g. "MacBook Pro 14" M3 ×1, Magic Keyboard ×1".</div></div>
-            <div class="param"><div class="param-top"><span class="pname">priority</span><span class="ptype">string</span><span class="popt">optional</span></div><div class="pdesc">Low, Medium, or High. Defaults to Medium.</div></div>
-          </div>
-          <div class="schema-col">
-            <div class="schema-head">Output</div>
-            <div class="param"><div class="param-top"><span class="pname">ticket_key</span><span class="ptype">string</span></div><div class="pdesc">Jira issue key, e.g. ITHD-42.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span></div><div class="pdesc">Direct URL to the Jira issue. Pass to send_approval_request.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span></div><div class="pdesc">Echo of the input — returned so the agent doesn't need to track state between calls.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Initial ticket status, always "Open" on creation.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-top">
-          <div class="tool-name-row"><span class="tool-name">send_approval_request</span><span class="app-tag" style="color:var(--gmail);border-color:rgba(234,67,53,0.2);background:rgba(234,67,53,0.05)">Gmail</span></div>
-          <div class="tool-desc">Sends a formatted approval email to the employee's manager with full provisioning details — employee name, items requested, Jira ticket link, and reservation ID. Call this after create_provisioning_ticket succeeds. This is the human-in-the-loop checkpoint in the provisioning flow.</div>
-        </div>
-        <div class="tool-schemas">
-          <div class="schema-col">
-            <div class="schema-head">Inputs</div>
-            <div class="param"><div class="param-top"><span class="pname">manager_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From get_employee_profile output field manager_email.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">employee_name</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Full name of the requesting employee — used in the email subject and body.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Human-readable items list — same string passed to create_provisioning_ticket.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From create_provisioning_ticket — so the manager can review and approve.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From create_provisioning_ticket output — included for cross-system reference.</div></div>
-          </div>
-          <div class="schema-col">
-            <div class="schema-head">Output</div>
-            <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Returns "Approval email sent" on success.</div></div>
-            <div class="param"><div class="param-top"><span class="pname">sent_to</span><span class="ptype">string</span></div><div class="pdesc">The manager email address the approval request was delivered to.</div></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Footer -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
@@ -523,16 +521,12 @@ Intern</div>
         </div>
         <span class="footer-name">Powered by Workato Enterprise MCP</span>
       </div>
-      <span class="footer-sep">·</span>
       <span class="footer-event">Buildathon: MCP Edition</span>
-      <span class="footer-sep">·</span>
       <span class="footer-copy">ATLAS · IT Equipment Provisioning MCP Server</span>
     </div>
   </footer>
 
-</div>
-
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -540,14 +534,4 @@ function switchTab(id, btn) {
   btn.classList.add('active');
 }
 function copyBlock(id, btn) {
-  const el = document.getElementById(id);
-  let text = '';
-  el.childNodes.forEach(n => { if (n.nodeType === 3) text += n.textContent; });
-  navigator.clipboard.writeText(text.trim()).then(() => {
-    btn.textContent = 'Copied!'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
-}
-</script>
-</body>
-</html>
+  const el = document.getEle
