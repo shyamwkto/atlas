@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATLAS MCP</title>
+<title>ATLAS - IT Equipment Provisioning MCP Server | Workato Community Buildathon</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,7 +20,6 @@
     --muted2:      #9CA3AF;
     --rule:        #E5E7EB;
     --rule2:       #F3F4F6;
-    --surface:     #F9FAFB;
     --white:       #FFFFFF;
     --red:         #DC2626;
     --red-soft:    #FEF2F1;
@@ -32,9 +31,7 @@
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', sans-serif; background: #f0f4f4; color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
-  /* ── Hero — full bleed dark with gradient text ── */
-  .hero-banner {
+.hero-banner {
     background: #131313;
     padding: 72px 48px 64px;
     text-align: center;
@@ -57,7 +54,6 @@
   }
   .hero-banner h1 {
     font-size: clamp(28px, 5vw, 56px);
-    font-family: 'Inter', sans-serif;
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.01em;
@@ -86,12 +82,8 @@
     letter-spacing: 0.01em;
     position: relative; z-index: 1;
   }
-
-  /* ── Outer wrapper ── */
-  .outer { max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px; }
-
-  /* ── Tab nav ── */
-  .tab-nav {
+.outer { max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px; }
+.tab-nav {
     background: var(--white);
     border: 1px solid var(--rule);
     border-radius: 10px;
@@ -112,20 +104,14 @@
   }
   .tab-btn:hover { background: var(--rule2); color: var(--ink2); }
   .tab-btn.active { background: var(--teal-3); color: #ffffff; font-weight: 700; }
-
-  /* ── Tab panel ── */
-  .tab-panel { display: none; background: var(--white); border-radius: 12px; padding: 36px 40px; border: 1px solid var(--rule); }
+.tab-panel { display: none; background: var(--white); border-radius: 12px; padding: 36px 40px; border: 1px solid var(--rule); }
   .tab-panel.active { display: block; animation: fadeUp .16s ease; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(4px) } to { opacity:1; transform:translateY(0) } }
-
-  /* ── Section headings ── */
-  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-text); margin-bottom: 4px; }
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-text); margin-bottom: 4px; }
   h2 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.02em; }
   h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
   .section-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; max-width: 580px; line-height: 1.65; }
-
-  /* ── Steps ── */
-  .steps { display: flex; flex-direction: column; gap: 1px; border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); }
+.steps { display: flex; flex-direction: column; gap: 1px; border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); }
   .step-card { display: grid; grid-template-columns: 52px 1fr; padding: 20px 20px 20px 0; background: var(--white); border-bottom: 1px solid var(--rule); transition: background .12s; }
   .step-card:last-child { border-bottom: none; }
   .step-card:hover { background: var(--teal-soft); }
@@ -135,15 +121,11 @@
   .step-body > p:last-child { margin-bottom: 0; }
   .ext-link { display: inline-flex; align-items: center; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal-text); text-decoration: none; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--teal-border); background: var(--teal-soft); transition: background .12s; }
   .ext-link:hover { background: #d0f5f0; }
-
-  /* Download button */
-  .download-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--white); text-decoration: none; padding: 9px 18px; border-radius: 7px; background: var(--teal-3); border: none; transition: background .15s, transform .1s; margin-bottom: 4px; }
+.download-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--white); text-decoration: none; padding: 9px 18px; border-radius: 7px; background: var(--teal-3); border: none; transition: background .15s, transform .1s; margin-bottom: 4px; }
   .download-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
   .download-btn:hover { background: var(--teal-1); transform: translateY(-1px); }
   .download-btn:active { transform: translateY(0); }
-
-  /* Resource cards */
-  .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .resource-card { border: 1px solid var(--rule); border-radius: 12px; padding: 24px; background: var(--white); display: flex; flex-direction: column; gap: 16px; transition: border-color .15s, box-shadow .15s; }
   .resource-card:hover { border-color: var(--teal-border); box-shadow: 0 4px 16px rgba(26,173,160,0.08); }
   .resource-icon { width: 48px; height: 48px; border-radius: 10px; border: 1px solid; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -157,9 +139,7 @@
   .resource-btn:hover { opacity: 0.88; transform: translateY(-1px); }
   .resource-btn:active { transform: translateY(0); }
   @media(max-width:640px) { .resource-grid { grid-template-columns: 1fr; } }
-
-  /* Math gate */
-  #math-gate { display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+#math-gate { display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
   .gate-inner { text-align: center; max-width: 560px; width: 100%; }
   .gate-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--teal-soft); border: 1px solid var(--teal-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
   .gate-icon svg { width: 24px; height: 24px; color: var(--teal-text); }
@@ -173,40 +153,26 @@
   .gate-btn:hover { background: var(--teal-1); transform: translateY(-1px); }
   .gate-btn:active { transform: translateY(0); }
   .gate-error { font-size: 13px; color: var(--red); margin-top: 10px; min-height: 20px; font-weight: 500; }
-  .gate-success { animation: gateOpen .4s ease forwards; }
   @keyframes gateOpen { from { opacity:1; transform:scale(1) } to { opacity:0; transform:scale(0.96) } }
-
-  /* ── Instruction list ── */
-  .inst { list-style: none; margin: 10px 0; display: flex; flex-direction: column; gap: 5px; }
+.inst { list-style: none; margin: 10px 0; display: flex; flex-direction: column; gap: 5px; }
   .inst li { font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.6; }
-  .inst li::before { content: "—"; position: absolute; left: 0; color: var(--muted2); font-size: 11px; top: 2px; }
+  .inst li::before { content: "-"; position: absolute; left: 0; color: var(--muted2); font-size: 11px; top: 2px; }
   .inst li strong { color: var(--ink2); font-weight: 600; }
   code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--teal-soft); border: 1px solid var(--teal-border); padding: 1px 5px; border-radius: 3px; color: var(--teal-text); }
-
-  /* ── Copy block ── */
-  .copy-wrap { position: relative; margin: 12px 0; }
+.copy-wrap { position: relative; margin: 12px 0; }
   .copy-block { background: var(--rule2); border: 1px solid var(--rule); border-left: 3px solid var(--teal-2); border-radius: 6px; padding: 14px 52px 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink2); line-height: 1.9; white-space: pre; }
   .copy-btn { position: absolute; top: 10px; right: 10px; background: var(--white); border: 1px solid var(--rule); border-radius: 5px; padding: 4px 10px; font-size: 11px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all .12s; }
   .copy-btn:hover { background: var(--teal-soft); color: var(--teal-text); border-color: var(--teal-border); }
   .copy-btn.copied { color: var(--teal-text); border-color: var(--teal-border); }
-
-  /* ── Callout ── */
-  .callout { background: #FFFBEB; border: 1px solid #FDE68A; border-left: 3px solid #F59E0B; border-radius: 6px; padding: 12px 14px; font-size: 13px; color: var(--ink2); line-height: 1.6; margin-top: 12px; }
+.callout { background: #FFFBEB; border: 1px solid #FDE68A; border-left: 3px solid #F59E0B; border-radius: 6px; padding: 12px 14px; font-size: 13px; color: var(--ink2); line-height: 1.6; margin-top: 12px; }
   .callout strong { color: #92400E; }
-
-  /* ── Connection grid ── */
-  .conn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-top: 14px; }
+.conn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-top: 14px; }
   .conn-card { background: var(--rule2); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; transition: border-color .12s; }
   .conn-card:hover { border-color: var(--teal-border); background: var(--teal-soft); }
   .conn-app { font-size: 13px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 7px; margin-bottom: 3px; }
   .conn-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .conn-detail { font-size: 11px; color: var(--muted2); font-family: 'JetBrains Mono', monospace; padding-left: 14px; }
-
-  /* ── Divider ── */
-  .divider { height: 1px; background: var(--rule); margin: 32px 0; }
-
-  /* ══════════ TOOL REFERENCE ══════════ */
-  .server-card { background: #131313; border-radius: 12px; padding: 28px 32px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; position: relative; overflow: hidden; }
+.server-card { background: #131313; border-radius: 12px; padding: 28px 32px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; position: relative; overflow: hidden; }
   .server-card::before { content: ""; position: absolute; top: -60px; right: -40px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(34,219,200,0.1), transparent 65%); pointer-events: none; }
   .server-name { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; margin-bottom: 2px; letter-spacing: 0.05em; background: linear-gradient(135deg, #a8f0ea, #67EADD, #22DBC8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .server-full { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 8px; font-style: italic; }
@@ -237,9 +203,7 @@
   .preq  { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); background: var(--red-soft); border: 1px solid var(--red-border); padding: 1px 5px; border-radius: 3px; }
   .popt  { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted2); background: var(--rule2); border: 1px solid var(--rule); padding: 1px 5px; border-radius: 3px; }
   .pdesc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-  /* ── Footer ── */
-  footer { background: #131313; padding: 20px 32px; margin-top: 0; }
+footer { background: #131313; padding: 20px 32px; margin-top: 0; }
   .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .footer-brand { display: flex; align-items: center; gap: 8px; }
   .footer-icon { width: 20px; height: 20px; border-radius: 4px; background: var(--teal-3); display: flex; align-items: center; justify-content: center; }
@@ -260,29 +224,24 @@
 </style>
 </head>
 <body>
-
-  <!-- Hero -->
-  <div class="hero-banner">
+<div class="hero-banner">
     <span class="hero-eyebrow">Hands-on Workshop · Workato Enterprise MCP</span>
     <h1>Light up your AI with<br>Workato Enterprise MCP</h1>
-    <p class="hero-desc"><b>ATLAS</b> - Automated Technology Logistics &amp; Allocation System.<br>Handles IT equipment requests - checks eligibility, inventory, raises tickets and sends notifications.</p>
-    <div class="hero-pill">Workato Community Buildathon - MCP Edition </div>
+    <p class="hero-desc"><strong style="-webkit-text-fill-color:#67EADD;color:#67EADD">ATLAS</strong> - Automated Technology Logistics &amp; Allocation System.<br>Handles IT equipment requests - checks eligibility, inventory, raises tickets and sends notifications.</p>
+    <div class="hero-pill">Workato Community Buildathon: MCP Edition</div>
   </div>
 
   <div class="outer">
-
-    <!-- Tab nav -->
-    <div class="tab-nav">
-      <button class="tab-btn active" onclick="switchTab('prereqs',this)">Prerequisites</button>
+<div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('accounts',this)">Account Setup</button>
+      <button class="tab-btn" onclick="switchTab('labsetup',this)">Lab Setup</button>
       <button class="tab-btn" onclick="switchTab('tools',this)">MCP Tool Reference</button>
       <button class="tab-btn" onclick="switchTab('resources',this)">Resources</button>
     </div>
-
-    <!-- PREREQUISITES -->
-    <div id="tab-prereqs" class="tab-panel active">
+<div id="tab-accounts" class="tab-panel active">
 
       <div class="section-label">Accounts</div>
-      <h2>Prerequisites</h2>
+      <h2>Account Setup</h2>
       <p class="section-desc">Sign up for each service before attending the workshop. All accounts are free with no credit card required.</p>
 
       <div class="steps">
@@ -290,7 +249,7 @@
           <div class="step-num-col"><div class="step-num">1</div></div>
           <div class="step-body">
             <h3>Workato Developer Sandbox</h3>
-            <p>Your automation platform for building the ATLAS MCP server and all recipe-based tools. Sign up for a free developer sandbox — it never expires.</p>
+            <p>Your automation platform for building the ATLAS MCP server and all recipe-based tools. Sign up for a free developer sandbox - it never expires.</p>
             <a href="https://www.workato.com/developers/sandbox" target="_blank" class="ext-link">workato.com/developers/sandbox ↗</a>
           </div>
         </div>
@@ -299,7 +258,7 @@
           <div class="step-body">
             <h3>Salesforce Developer Edition</h3>
             <p>Used to store employee Contact records and asset entitlements. Sign up for a free Developer Edition account.</p>
-            <a href="https://www.salesforce.com/products/free-trial/developer/" target="_blank" class="ext-link">salesforce.com — Developer Edition ↗</a>
+            <a href="https://www.salesforce.com/products/free-trial/developer/" target="_blank" class="ext-link">salesforce.com/products/free-trial/developer ↗</a>
           </div>
         </div>
         <div class="step-card">
@@ -330,8 +289,8 @@
           </div>
         </div>
       </div>
-
-      <div class="divider"></div>
+    </div>
+<div id="tab-labsetup" class="tab-panel">
 
       <div class="section-label">System configuration</div>
       <h2>Lab Setup</h2>
@@ -341,11 +300,11 @@
         <div class="step-card">
           <div class="step-num-col"><div class="step-num">1</div></div>
           <div class="step-body">
-            <h3>Google Sheets — Equipment Inventory</h3>
+            <h3>Google Sheets - Equipment Inventory</h3>
             <p>Download the pre-built inventory workbook and save it as a native Google Sheet in your Drive.</p>
-            <a href="https://github.com/shyamwkto/atlas/raw/main/assets/IT_Equipment_Inventory.xlsx" download class="download-btn">
+            <a href="https://github.com/shyamwkto/atlas/raw/main/assets/ACME_IT_Equipment.xlsx" download class="download-btn">
               <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1v9M8 10l-3-3M8 10l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12v1.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              Download IT_Equipment_Inventory.xlsx
+              Download ACME_IT_Equipment.xlsx
             </a>
             <ul class="inst" style="margin-top:12px">
               <li>Go to <strong>drive.google.com → New → File upload</strong> and select the downloaded file</li>
@@ -358,12 +317,12 @@
         <div class="step-card">
           <div class="step-num-col"><div class="step-num">2</div></div>
           <div class="step-body">
-            <h3>Salesforce — Employee Contacts</h3>
-            <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:14px">Step A — Create the Equipment Role custom field</h3>
+            <h3>Salesforce - Employee Contacts</h3>
+            <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:14px">Step A - Create the Equipment Role custom field</h3>
             <ul class="inst">
               <li>Gear icon <strong>→ Setup → Object Manager → Contact → Fields &amp; Relationships → New</strong></li>
               <li>Select <strong>Picklist</strong> → Next</li>
-              <li>Field Label: <strong>Equipment Role</strong> — API name auto-fills as <code>Equipment_Role__c</code></li>
+              <li>Field Label: <strong>Equipment Role</strong> - API name auto-fills as <code>Equipment_Role__c</code></li>
               <li>Paste the values below, then click <strong>Next → Next → Save</strong></li>
             </ul>
             <div class="copy-wrap">
@@ -377,20 +336,20 @@ Manager / Director
 Intern</div>
               <button class="copy-btn" onclick="copyBlock('roles-block',this)">Copy</button>
             </div>
-            <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:18px">Step B — Create two Contact records</h3>
+            <h3 style="color:var(--muted);font-weight:500;font-size:13px;margin-top:18px">Step B - Create two Contact records</h3>
             <ul class="inst">
-              <li><strong>Contact 1 (you — the employee):</strong> your name · your email · Equipment Role = Software Engineer · Department = Engineering</li>
+              <li><strong>Contact 1 (you - the employee):</strong> your name · your email · Equipment Role = Software Engineer · Department = Engineering</li>
               <li><strong>Contact 2 (your manager alias):</strong> your name + "(Manager)" · <code>you&#43;manager&#64;gmail&#46;com</code> · Equipment Role = Manager / Director</li>
               <li>On Contact 1, set <strong>Reports To</strong> → Contact 2</li>
             </ul>
-            <div class="callout"><strong>Tip:</strong> Gmail aliases work seamlessly — <code>you&#43;manager&#64;gmail&#46;com</code> delivers to your inbox but appears as a distinct address to Salesforce and the Gmail send action in your recipe.</div>
+            <div class="callout"><strong>Tip:</strong> Gmail aliases work seamlessly - <code>you&#43;manager&#64;gmail&#46;com</code> delivers to your inbox but appears as a distinct address to Salesforce and the Gmail send action in your recipe.</div>
           </div>
         </div>
 
         <div class="step-card">
           <div class="step-num-col"><div class="step-num">3</div></div>
           <div class="step-body">
-            <h3>Jira Service Management — IT Helpdesk Space</h3>
+            <h3>Jira Service Management - IT Helpdesk Space</h3>
             <ul class="inst">
               <li>Open your Atlassian site → select <strong>Jira Service Management</strong></li>
               <li>Click <strong>Create project</strong> → choose <strong>IT Service Management</strong> template → Next</li>
@@ -402,7 +361,7 @@ Intern</div>
         <div class="step-card">
           <div class="step-num-col"><div class="step-num">4</div></div>
           <div class="step-body">
-            <h3>Workato — Create Connections</h3>
+            <h3>Workato - Create Connections</h3>
             <p>In your Workato workspace go to <strong>Connections → New connection</strong> and authenticate each app. Verify all four show green Connected status before starting.</p>
             <div class="conn-grid">
               <div class="conn-card"><div class="conn-app"><span class="conn-dot" style="background:var(--sf)"></span>Salesforce</div><div class="conn-detail">OAuth 2.0 · Developer Edition</div></div>
@@ -414,9 +373,7 @@ Intern</div>
         </div>
       </div>
     </div>
-
-    <!-- TOOL REFERENCE -->
-    <div id="tab-tools" class="tab-panel">
+<div id="tab-tools" class="tab-panel">
 
       <div class="section-label">MCP Server</div>
       <h2>Tool Reference</h2>
@@ -426,7 +383,7 @@ Intern</div>
         <div>
           <div class="server-name">ATLAS</div>
           <div class="server-full">Automated Technology Logistics &amp; Allocation System</div>
-          <div class="server-desc">Handles IT equipment requests — checks eligibility, inventory, raises tickets and sends notifications.</div>
+          <div class="server-desc">Handles IT equipment requests - checks eligibility, inventory, raises tickets and sends notifications.</div>
         </div>
         <div class="server-meta"><span class="server-num">5</span><span class="server-lbl">tools</span></div>
       </div>
@@ -457,7 +414,7 @@ Intern</div>
         <div class="tool-card">
           <div class="tool-top">
             <div class="tool-name-row"><span class="tool-name">get_employee_profile</span><span class="app-tag" style="color:var(--sf);border-color:rgba(1,118,211,0.2);background:rgba(1,118,211,0.05)">Salesforce</span></div>
-            <div class="tool-desc">Looks up an employee in Salesforce and returns their profile including role, department, manager contact, and full equipment entitlement tier. Always call this before reserving any item — the entitlement object determines whether the requested equipment is eligible for this employee's role.</div>
+            <div class="tool-desc">Looks up an employee in Salesforce and returns their profile including role, department, manager contact, and full equipment entitlement tier. Always call this before reserving any item - the entitlement object determines whether the requested equipment is eligible for this employee's role.</div>
           </div>
           <div class="tool-schemas">
             <div class="schema-col">
@@ -471,7 +428,7 @@ Intern</div>
               <div class="param"><div class="param-top"><span class="pname">role</span><span class="ptype">string</span></div><div class="pdesc">Equipment Role value, e.g. Software Engineer.</div></div>
               <div class="param"><div class="param-top"><span class="pname">department</span><span class="ptype">string</span></div><div class="pdesc">Employee's department.</div></div>
               <div class="param"><div class="param-top"><span class="pname">manager_email</span><span class="ptype">string</span></div><div class="pdesc">Manager's email. Pass to send_approval_request.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">entitlement</span><span class="ptype">object</span></div><div class="pdesc">Full entitlement row — laptop tier, monitor limit, keyboard, mouse, audio, accessories eligibility.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">entitlement</span><span class="ptype">object</span></div><div class="pdesc">Full entitlement row - laptop tier, monitor limit, keyboard, mouse, audio, accessories eligibility.</div></div>
             </div>
           </div>
         </div>
@@ -508,7 +465,7 @@ Intern</div>
             <div class="schema-col">
               <div class="schema-head">Inputs</div>
               <div class="param"><div class="param-top"><span class="pname">employee_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Included in the ticket description for IT admin reference.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From reserve_item — included for cross-system traceability.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From reserve_item - included for cross-system traceability.</div></div>
               <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Human-readable list, e.g. "MacBook Pro 14" M3 ×1, Magic Keyboard ×1".</div></div>
               <div class="param"><div class="param-top"><span class="pname">priority</span><span class="ptype">string</span><span class="popt">optional</span></div><div class="pdesc">Low, Medium, or High. Defaults to Medium.</div></div>
             </div>
@@ -516,7 +473,7 @@ Intern</div>
               <div class="schema-head">Output</div>
               <div class="param"><div class="param-top"><span class="pname">ticket_key</span><span class="ptype">string</span></div><div class="pdesc">Jira issue key, e.g. ITHD-42.</div></div>
               <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span></div><div class="pdesc">Direct URL to the Jira issue. Pass to send_approval_request.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span></div><div class="pdesc">Echo of the input — returned so the agent doesn't need to track state between calls.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span></div><div class="pdesc">Echo of the input - returned so the agent doesn't need to track state between calls.</div></div>
               <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Initial ticket status, always "Open" on creation.</div></div>
             </div>
           </div>
@@ -525,16 +482,16 @@ Intern</div>
         <div class="tool-card">
           <div class="tool-top">
             <div class="tool-name-row"><span class="tool-name">send_approval_request</span><span class="app-tag" style="color:var(--gmail);border-color:rgba(234,67,53,0.2);background:rgba(234,67,53,0.05)">Gmail</span></div>
-            <div class="tool-desc">Sends a formatted approval email to the employee's manager with full provisioning details — employee name, items requested, Jira ticket link, and reservation ID. Call this after create_provisioning_ticket succeeds. This is the human-in-the-loop checkpoint in the provisioning flow.</div>
+            <div class="tool-desc">Sends a formatted approval email to the employee's manager with full provisioning details - employee name, items requested, Jira ticket link, and reservation ID. Call this after create_provisioning_ticket succeeds. This is the human-in-the-loop checkpoint in the provisioning flow.</div>
           </div>
           <div class="tool-schemas">
             <div class="schema-col">
               <div class="schema-head">Inputs</div>
               <div class="param"><div class="param-top"><span class="pname">manager_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From get_employee_profile output field manager_email.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">employee_name</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Full name of the requesting employee — used in the email subject and body.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Human-readable items list — same string passed to create_provisioning_ticket.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From create_provisioning_ticket — so the manager can review and approve.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From create_provisioning_ticket output — included for cross-system reference.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">employee_name</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Full name of the requesting employee - used in the email subject and body.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Human-readable items list - same string passed to create_provisioning_ticket.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From create_provisioning_ticket - so the manager can review and approve.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">From create_provisioning_ticket output - included for cross-system reference.</div></div>
             </div>
             <div class="schema-col">
               <div class="schema-head">Output</div>
@@ -546,30 +503,24 @@ Intern</div>
 
       </div>
     </div>
-
-    <!-- RESOURCES -->
-    <div id="tab-resources" class="tab-panel">
-
-      <!-- Text gate -->
-      <div id="math-gate">
+<div id="tab-resources" class="tab-panel">
+<div id="math-gate">
         <div class="gate-inner">
           <div class="gate-icon">
             <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-1.5 2-2.5 3M12 17h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <h3 class="gate-title">Why Enterprise MCP Matters?</h3>
-          <p class="gate-desc">Share your thoughts to unlock the resources. There's no single right answer — we're looking for key ideas.</p>
+          <p class="gate-desc">Share your thoughts to unlock the resources. There's no single right answer - we're looking for key ideas.</p>
           <textarea id="gate-input" class="gate-textarea" placeholder="Type your answer here…" rows="4"></textarea>
           <div class="gate-hint" id="gate-hint">0 / 5 matched (need any 3 to unlock)</div>
           <button class="gate-btn" onclick="checkGate()">Unlock Resources</button>
           <p id="gate-error" class="gate-error"></p>
         </div>
       </div>
-
-      <!-- Actual content — hidden until gate is solved -->
-      <div id="resources-content" style="display:none">
+<div id="resources-content" style="display:none">
         <div class="section-label">Downloads</div>
         <h2>Resources</h2>
-        <p class="section-desc">Everything you need to get started — download both files before the workshop begins.</p>
+        <p class="section-desc">Everything you need to get started - download both files before the workshop begins.</p>
 
         <div class="resource-grid">
 
@@ -581,9 +532,9 @@ Intern</div>
               <div class="resource-title">IT Equipment Inventory</div>
               <div class="resource-meta">Google Sheets workbook &nbsp;·&nbsp; .xlsx</div>
               <div class="resource-desc">Pre-built inventory workbook with Stock, Reservations, Entitlements, and Employee Seed Data tabs. Upload to Google Drive and open as a native Google Sheet before the session.</div>
-              <a href="https://github.com/shyamwkto/atlas/raw/main/assets/IT_Equipment_Inventory.xlsx" download class="resource-btn" style="background:var(--sheets)">
+              <a href="https://github.com/shyamwkto/atlas/raw/main/assets/ACME_IT_Equipment.xlsx" download class="resource-btn" style="background:var(--sheets)">
                 <svg viewBox="0 0 16 16" fill="none"><path d="M8 1v9M8 10l-3-3M8 10l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12v1.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Download IT_Equipment_Inventory.xlsx
+                Download ACME_IT_Equipment.xlsx
               </a>
             </div>
           </div>
@@ -596,9 +547,9 @@ Intern</div>
               <div class="resource-title">ATLAS Project Manifest</div>
               <div class="resource-meta">Workato project export &nbsp;·&nbsp; .zip</div>
               <div class="resource-desc">Complete Workato project package containing all five MCP server tool recipes and the MCP server configuration for ATLAS. Import into your Workato workspace to use as a reference solution or starting point.</div>
-              <a href="https://github.com/shyamwkto/atlas/raw/main/assets/atlas-mcp.zip" download class="resource-btn" style="background:var(--teal-3)">
+              <a href="https://github.com/shyamwkto/atlas/raw/main/assets/atlas.zip" download class="resource-btn" style="background:var(--teal-3)">
                 <svg viewBox="0 0 16 16" fill="none"><path d="M8 1v9M8 10l-3-3M8 10l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12v1.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Download atlas-mcp.zip
+                Download atlas.zip
               </a>
             </div>
           </div>
@@ -630,7 +581,7 @@ function switchTab(id, btn) {
   btn.classList.add('active');
 }
 
-// Text gate — keyword matching
+// Text gate - keyword matching
 var _gateKeywords = [
   'enterprise','orchestration','trust','skills','security'
 ];
@@ -659,7 +610,7 @@ function checkGate() {
   var text = document.getElementById('gate-input').value.trim();
   var err = document.getElementById('gate-error');
   if (text.length < 20) {
-    err.textContent = 'Please write a bit more — share your thoughts!';
+    err.textContent = 'Please write a bit more - share your thoughts!';
     return;
   }
   var matched = countMatches(text);
@@ -674,7 +625,7 @@ function checkGate() {
       content.style.animation = 'fadeUp .3s ease';
     }, 380);
   } else {
-    err.textContent = 'Good start! Try mentioning a few more key concepts — think about agents, trust, and production.';
+    err.textContent = 'Good start! Try mentioning a few more key concepts - think about agents, trust, and production.';
   }
 }
 function copyBlock(id, btn) {
