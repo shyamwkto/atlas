@@ -436,7 +436,7 @@ Intern</div>
         <div class="tool-card">
           <div class="tool-top">
             <div class="tool-name-row"><span class="tool-name">reserve_item</span><span class="app-tag" style="color:var(--sheets);border-color:rgba(24,128,56,0.2);background:rgba(24,128,56,0.05)">Google Sheets</span></div>
-            <div class="tool-desc">Reserves one or more items from inventory on behalf of an employee. Decrements Available Qty and increments Reserved Qty in the Stock tab, then appends one row per item to the Reservations tab. Only call after confirming eligibility via get_employee_profile and availability via check_inventory.</div>
+            <div class="tool-desc">Reserves one or more items from inventory on behalf of an employee. Decrements Available Qty and increments Reserved Qty in the Stock, then appends one row per item to the Reservations. Returns a reservation_id. Only call after confirming eligibility via get_employee_profile and availability via check_inventory.</div>
           </div>
           <div class="tool-schemas">
             <div class="schema-col">
