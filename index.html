@@ -178,8 +178,8 @@
   .server-full { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 8px; font-style: italic; }
   .server-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 560px; }
   .server-meta { text-align: right; flex-shrink: 0; }
-  .server-num { font-size: 52px; font-weight: 800; color: rgba(103,234,221,0.08); line-height: 1; display: block; letter-spacing: -0.04em; }
-  .server-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(103,234,221,0.25); letter-spacing: 0.1em; }
+  .server-num { font-size: 52px; font-weight: 800; color: rgba(103,234,221,0.75); line-height: 1; display: block; letter-spacing: -0.04em; }
+  .server-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(103,234,221,0.75); letter-spacing: 0.1em; }
 
   .tool-list { display: flex; flex-direction: column; gap: 12px; }
   .tool-card { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; background: var(--white); transition: border-color .15s, box-shadow .15s; }
@@ -402,11 +402,11 @@ Intern</div>
             </div>
             <div class="schema-col">
               <div class="schema-head">Output</div>
-              <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">array</span></div><div class="pdesc">List of available inventory items. Only items with qty > 0 included.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">items[].item_id</span><span class="ptype">string</span></div><div class="pdesc">Unique identifier, e.g. ITEM-001. Pass this to reserve_item.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">items[].item_name</span><span class="ptype">string</span></div><div class="pdesc">Display name, e.g. MacBook Pro 14" M3.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">items[].category</span><span class="ptype">string</span></div><div class="pdesc">Equipment category.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">items[].available_qty</span><span class="ptype">integer</span></div><div class="pdesc">Current available stock quantity.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items</span><span class="ptype">array</span><span class="preq">required</span></div><div class="pdesc">List of available inventory items. Only items with qty > 0 included.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].item_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Unique identifier, e.g. ITEM-001. Pass this to reserve_item.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].item_name</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Display name, e.g. MacBook Pro 14" M3.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].category</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Equipment category.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">items[].available_qty</span><span class="ptype">integer</span><span class="preq">required</span></div><div class="pdesc">Current available stock quantity.</div></div>
             </div>
           </div>
         </div>
@@ -423,12 +423,12 @@ Intern</div>
             </div>
             <div class="schema-col">
               <div class="schema-head">Output</div>
-              <div class="param"><div class="param-top"><span class="pname">employee_id</span><span class="ptype">string</span></div><div class="pdesc">Salesforce Contact ID. Pass to reserve_item.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">full_name</span><span class="ptype">string</span></div><div class="pdesc">Employee's full name. Pass to reserve_item and send_approval_request.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">role</span><span class="ptype">string</span></div><div class="pdesc">Equipment Role value, e.g. Software Engineer.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">department</span><span class="ptype">string</span></div><div class="pdesc">Employee's department.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">manager_email</span><span class="ptype">string</span></div><div class="pdesc">Manager's email. Pass to send_approval_request.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">entitlement</span><span class="ptype">object</span></div><div class="pdesc">Full entitlement row - laptop tier, monitor limit, keyboard, mouse, audio, accessories eligibility.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">employee_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Salesforce Contact ID. Pass to reserve_item.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">full_name</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Employee's full name. Pass to reserve_item and send_approval_request.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">role</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Equipment Role value, e.g. Software Engineer.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">department</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Employee's department.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">manager_email</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Manager's email. Pass to send_approval_request.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">entitlement</span><span class="ptype">object</span><span class="preq">required</span></div><div class="pdesc">Full entitlement row - laptop tier, monitor limit, keyboard, mouse, audio, accessories eligibility.</div></div>
             </div>
           </div>
         </div>
@@ -450,15 +450,15 @@ Intern</div>
             </div>
             <div class="schema-col">
               <div class="schema-head">Output</div>
-              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span></div><div class="pdesc">Unique reservation ID, e.g. RES-20250320143022. Pass to create_provisioning_ticket and send_approval_request.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Always returns "Pending" on successful reservation.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Unique reservation ID, e.g. RES-20250320143022. Pass to create_provisioning_ticket and send_approval_request.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span><span class="preq">required</span><span class="preq">required</span></div><div class="pdesc">Always returns "Pending" on successful reservation.</div></div>
             </div>
           </div>
         </div>
 
         <div class="tool-card">
           <div class="tool-top">
-            <div class="tool-name-row"><span class="tool-name">create_provisioning_ticket</span><span class="app-tag" style="color:var(--jira);border-color:rgba(0,82,204,0.2);background:rgba(0,82,204,0.05)">Jira JSM</span></div>
+            <div class="tool-name-row"><span class="tool-name">create_provisioning_ticket</span><span class="app-tag" style="color:var(--jira);border-color:rgba(0,82,204,0.2);background:rgba(0,82,204,0.05)">Jira</span></div>
             <div class="tool-desc">Creates an Equipment Request issue in the ITHD Jira Service Management space. Captures the employee, items requested as a human-readable string, reservation ID, and priority. Call this after reserve_item succeeds. Returns the ticket key and URL for use in the approval email.</div>
           </div>
           <div class="tool-schemas">
@@ -471,10 +471,10 @@ Intern</div>
             </div>
             <div class="schema-col">
               <div class="schema-head">Output</div>
-              <div class="param"><div class="param-top"><span class="pname">ticket_key</span><span class="ptype">string</span></div><div class="pdesc">Jira issue key, e.g. ITHD-42.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span></div><div class="pdesc">Direct URL to the Jira issue. Pass to send_approval_request.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span></div><div class="pdesc">Echo of the input - returned so the agent doesn't need to track state between calls.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Initial ticket status, always "Open" on creation.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">ticket_key</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Jira issue key, e.g. ITHD-42.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">ticket_url</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Direct URL to the Jira issue. Pass to send_approval_request.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">reservation_id</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Echo of the input - returned so the agent doesn't need to track state between calls.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span><span class="preq">required</span><span class="preq">required</span></div><div class="pdesc">Initial ticket status, always "Open" on creation.</div></div>
             </div>
           </div>
         </div>
@@ -495,8 +495,8 @@ Intern</div>
             </div>
             <div class="schema-col">
               <div class="schema-head">Output</div>
-              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span></div><div class="pdesc">Returns "Approval email sent" on success.</div></div>
-              <div class="param"><div class="param-top"><span class="pname">sent_to</span><span class="ptype">string</span></div><div class="pdesc">The manager email address the approval request was delivered to.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">status</span><span class="ptype">string</span><span class="preq">required</span></div><div class="pdesc">Returns "Approval email sent" on success.</div></div>
+              <div class="param"><div class="param-top"><span class="pname">sent_to</span><span class="ptype">string</span><span class="preq">required</span><span class="preq">required</span></div><div class="pdesc">The manager email address the approval request was delivered to.</div></div>
             </div>
           </div>
         </div>
